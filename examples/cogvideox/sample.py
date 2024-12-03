@@ -1,5 +1,6 @@
 from videosys import CogVideoXConfig, VideoSysEngine
-
+import argparse
+import time 
 
 def run_base():
     # models: "THUDM/CogVideoX-2b" or "THUDM/CogVideoX-5b"
@@ -12,6 +13,7 @@ def run_base():
     prompt = "Sunset over the sea."
     # num frames should be <= 49. resolution is fixed to 720p.
     # seed=-1 means random seed. >0 means fixed seed.
+    start = time.time()
     video = engine.generate(
         prompt=prompt,
         guidance_scale=6,
@@ -19,6 +21,8 @@ def run_base():
         num_frames=49,
         seed=-1,
     ).video[0]
+    end = time.time()
+    print(f"CogVideoX-2b run_base generate video cost time:{end-start}")
     engine.save_video(video, f"./outputs/{prompt}.mp4")
 
 
@@ -27,7 +31,10 @@ def run_pab():
     engine = VideoSysEngine(config)
 
     prompt = "Sunset over the sea."
+    start = time.time()
     video = engine.generate(prompt).video[0]
+    end = time.time()
+    print(f"CogVideoX-2b run_pab generate video cost time:{end-start}")
     engine.save_video(video, f"./outputs/{prompt}-pab.mp4")
 
 
@@ -36,11 +43,23 @@ def run_low_mem():
     engine = VideoSysEngine(config)
 
     prompt = "Sunset over the sea."
+    start = time.time()
     video = engine.generate(prompt).video[0]
+    end = time.time()
+    print(f"CogVideoX-2b run_low_mem generate video cost time:{end-start}")
     engine.save_video(video, f"./outputs/{prompt}-low_mem.mp4")
 
 
 if __name__ == "__main__":
-    run_base()
-    # run_pab()
-    # run_low_mem()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--base',action='store_true')
+    parser.add_argument('--pab',action='store_true')
+    parser.add_argument('--low_mem',action='store_true')
+    args = parser.parse_args()
+
+    if args.base:
+        run_base()
+    elif args.pab:
+        run_pab()
+    else:
+        run_low_mem()
