@@ -4,7 +4,9 @@ from videosys import CogVideoXConfig, VideoSysEngine
 def run_base():
     # models: "THUDM/CogVideoX-2b" or "THUDM/CogVideoX-5b"
     # change num_gpus for multi-gpu inference
-    config = CogVideoXConfig("THUDM/CogVideoX-2b", num_gpus=1)
+    # config = CogVideoXConfig("THUDM/CogVideoX-2b", num_gpus=1)
+    config = CogVideoXConfig("/home/pod/shared-nvme/CogVideoX-2b", num_gpus=1)
+
     engine = VideoSysEngine(config)
 
     prompt = "Sunset over the sea."
@@ -21,21 +23,21 @@ def run_base():
 
 
 def run_pab():
-    config = CogVideoXConfig("THUDM/CogVideoX-2b", enable_pab=True)
+    config = CogVideoXConfig("/home/pod/shared-nvme/CogVideoX-2b", enable_pab=True)
     engine = VideoSysEngine(config)
 
     prompt = "Sunset over the sea."
     video = engine.generate(prompt).video[0]
-    engine.save_video(video, f"./outputs/{prompt}.mp4")
+    engine.save_video(video, f"./outputs/{prompt}-pab.mp4")
 
 
 def run_low_mem():
-    config = CogVideoXConfig("THUDM/CogVideoX-2b", cpu_offload=True, vae_tiling=True)
+    config = CogVideoXConfig("/home/pod/shared-nvme/CogVideoX-2b", cpu_offload=True, vae_tiling=True)
     engine = VideoSysEngine(config)
 
     prompt = "Sunset over the sea."
     video = engine.generate(prompt).video[0]
-    engine.save_video(video, f"./outputs/{prompt}.mp4")
+    engine.save_video(video, f"./outputs/{prompt}-low_mem.mp4")
 
 
 if __name__ == "__main__":
