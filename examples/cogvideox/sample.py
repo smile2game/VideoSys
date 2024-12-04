@@ -13,21 +13,22 @@ def run_base():
     prompt = "Sunset over the sea."
     # num frames should be <= 49. resolution is fixed to 720p.
     # seed=-1 means random seed. >0 means fixed seed.
+    seed = 10 #这里可能会影响视频生成效果
     start = time.time()
     video = engine.generate(
         prompt=prompt,
         guidance_scale=6,
         num_inference_steps=50,
         num_frames=49,
-        seed=-1,
+        seed=seed,
     ).video[0]
     end = time.time()
     print(f"CogVideoX-2b run_base generate video cost time:{end-start}")
-    engine.save_video(video, f"./outputs/{prompt}.mp4")
+    engine.save_video(video, f"./outputs/{prompt}-{seed}.mp4")
 
 
 def run_pab():
-    config = CogVideoXConfig("/home/pod/shared-nvme/CogVideoX-2b", enable_pab=True)
+    config = CogVideoXConfig("/home/pod/shared-nvme/CogVideoX-2b", enable_pab=True,num_gpus=1)
     engine = VideoSysEngine(config)
 
     prompt = "Sunset over the sea."

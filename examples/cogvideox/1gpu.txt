@@ -1,0 +1,2 @@
+[12/04/24 15:09:29] INFO     VideoSys - INFO: Init parallel manager with dp_size: 1, cp_size: 1, sp_size: 1                                                                                                                                                                            
+CogVideoX-2b run_base generate video cost time:196.52122282981873

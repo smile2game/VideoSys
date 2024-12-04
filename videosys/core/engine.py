@@ -60,6 +60,7 @@ class VideoSysEngine:
             result_handler.start()
             self.worker_monitor.start()
 
+        print(f"create a driver_worker with pipeline_cls:{pipeline_cls}")
         self.driver_worker = self._create_pipeline(
             pipeline_cls=pipeline_cls, distributed_init_method=distributed_init_method
         )

@@ -1,0 +1,4 @@
+[12/04/24 15:05:30] INFO     VideoSys - INFO: Init Pyramid Attention Broadcast. spatial broadcast: True, spatial range: 2, spatial threshold: [100, 850]. temporal broadcast: False, temporal range: None, temporal_threshold: None. cross broadcast: False, cross range: None, cross  
+                             threshold: None. mlp broadcast: False.                                                                                                                                                                                                                    
+                    INFO     VideoSys - INFO: Init parallel manager with dp_size: 1, cp_size: 1, sp_size: 1                                                                                                                                                                            
+CogVideoX-2b run_pab generate video cost time:148.5462908744812

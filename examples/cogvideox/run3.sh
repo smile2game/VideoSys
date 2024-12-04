@@ -10,10 +10,11 @@ LOG_FILE="output.log"
 > $LOG_FILE
 
 # 定义要运行的模式（根据需要调整）
-MODES=("--base" "--pab" "--low_mem")
+# MODES=("--base" "--pab" "--low_mem")
+MODES=("--base" "--pab")
 
 # 循环执行3次，并记录每次执行的时间
-for i in {1..3}; do
+for i in {1..2}; do
     echo "Run #$i:" >> $LOG_FILE
     for mode in "${MODES[@]}"; do
         echo "  Running with mode: $mode" >> $LOG_FILE
