@@ -241,6 +241,7 @@ class CogVideoXPipeline(VideoSysPipeline):
             )
 
         prompt_embeds = self.text_encoder(text_input_ids.to(device))[0]
+        print(f"finish txt_embed,prompt_embeds is {prompt_embeds}")
         prompt_embeds = prompt_embeds.to(dtype=dtype, device=device)
 
         # duplicate text embeddings for each generation per prompt, using mps friendly method
@@ -306,6 +307,7 @@ class CogVideoXPipeline(VideoSysPipeline):
             )
 
         if do_classifier_free_guidance and negative_prompt_embeds is None:
+            print(f"cfg and no negetive prompt,so ")
             negative_prompt = negative_prompt or ""
             negative_prompt = batch_size * [negative_prompt] if isinstance(negative_prompt, str) else negative_prompt
 
@@ -384,7 +386,7 @@ class CogVideoXPipeline(VideoSysPipeline):
     # Copied from diffusers.pipelines.latte.pipeline_latte.LattePipeline.check_inputs
     def check_inputs(
         self,
-        prompt,
+        prompt, 
         height,
         width,
         negative_prompt,
@@ -595,7 +597,7 @@ class CogVideoXPipeline(VideoSysPipeline):
         update_steps(num_inference_steps)
         self._set_seed(seed)
 
-        if isinstance(callback_on_step_end, (PipelineCallback, MultiPipelineCallbacks)):
+        if isinstance(callback_on_step_end, (PipelineCallback, MultiPipelineCallbacks)): #判断回调
             callback_on_step_end_tensor_inputs = callback_on_step_end.tensor_inputs
 
         height = height or self.transformer.config.sample_size * self.vae_scale_factor_spatial
@@ -638,7 +640,7 @@ class CogVideoXPipeline(VideoSysPipeline):
             num_videos_per_prompt=num_videos_per_prompt,
             prompt_embeds=prompt_embeds,
             negative_prompt_embeds=negative_prompt_embeds,
-            max_sequence_length=max_sequence_length,
+            max_sequence_length=max_sequence_length, #226
             device=device,
         )
         if do_classifier_free_guidance:

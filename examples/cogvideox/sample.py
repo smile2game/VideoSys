@@ -15,6 +15,14 @@ def run_base():
     # seed=-1 means random seed. >0 means fixed seed.
     seed = 10 #这里可能会影响视频生成效果
     start = time.time()
+    import debugpy
+    try:
+        # 5678 is the default attach port in the VS Code debug configurations. Unless a host and port are specified, host defaults to 127.0.0.1
+        debugpy.listen(("localhost", 9501))
+        print("Waiting for debugger attach")
+        debugpy.wait_for_client()
+    except Exception as e:
+        pass
     video = engine.generate(
         prompt=prompt,
         guidance_scale=6,

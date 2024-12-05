@@ -1,6 +1,6 @@
 from videosys import OpenSoraPlanConfig, VideoSysEngine
 
-
+model_paht = "/home/pod/shared-nvme/Open-Sora-Plan-v1.2.0"
 def run_base():
     # open-sora-plan v1.2.0
     # transformer_type (len, res): 93x480p 93x720p 29x480p 29x720p

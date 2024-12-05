@@ -203,10 +203,13 @@ class OpenSoraPlanConfig:
             transformer_default = "LanguageBind/Open-Sora-Plan-v1.1.0"
             text_encoder_default = "DeepFloyd/t5-v1_1-xxl"
         elif version == "v120":
-            transformer_default = "LanguageBind/Open-Sora-Plan-v1.2.0"
+            # transformer_default = "LanguageBind/Open-Sora-Plan-v1.2.0"
+            transformer_default = "/home/pod/shared-nvme/Open-Sora-Plan-v1.2.0"
             text_encoder_default = "google/mt5-xxl"
         self.text_encoder = text_encoder or text_encoder_default
         self.transformer = transformer or transformer_default
+
+        print(f"we choose the model self.transformer:{self.transformer}")
 
         # ======= distributed ========
         self.num_gpus = num_gpus

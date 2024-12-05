@@ -85,7 +85,7 @@ class VideoSysEngine:
         # Start the workers first.
         worker_outputs = [worker.execute_method(method, *args, **kwargs) for worker in self.workers]
 
-        if async_run_tensor_parallel_workers_only:
+        if async_run_tensor_parallel_workers_only: 
             # Just return futures
             return worker_outputs
 
