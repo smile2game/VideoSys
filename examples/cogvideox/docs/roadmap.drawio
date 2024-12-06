@@ -1,0 +1,102 @@
+<mxfile host="65bd71144e">
+    <diagram name="第 1 页" id="avIrZIL3djdWUo3trUTh">
+        <mxGraphModel dx="1487" dy="801" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="YjdWproPRwVd0udE6Smj-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=none;strokeColor=#457B9D;fontColor=default;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fontSize=15;" parent="1" source="YjdWproPRwVd0udE6Smj-1" target="YjdWproPRwVd0udE6Smj-2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-39" value="&lt;font style=&quot;font-size: 22px;&quot;&gt;H-DiT&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=15;" parent="YjdWproPRwVd0udE6Smj-3" vertex="1" connectable="0">
+                    <mxGeometry x="-0.4306" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-1" value="&lt;span style=&quot;font-size: 15px;&quot;&gt;框架搭建&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fontSize=15;" parent="1" vertex="1">
+                    <mxGeometry x="461" y="170" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Comic Sans MS;fontSize=15;" parent="1" source="YjdWproPRwVd0udE6Smj-2" target="YjdWproPRwVd0udE6Smj-10" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Comic Sans MS;fontSize=15;" parent="1" source="YjdWproPRwVd0udE6Smj-2" target="YjdWproPRwVd0udE6Smj-12" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Comic Sans MS;fontSize=15;" parent="1" source="YjdWproPRwVd0udE6Smj-2" target="YjdWproPRwVd0udE6Smj-13" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" style="edgeStyle=none;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;" edge="1" parent="1" source="YjdWproPRwVd0udE6Smj-2" target="YjdWproPRwVd0udE6Smj-8">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-2" value="&lt;span style=&quot;font-size: 15px;&quot;&gt;分布式推理方案设计&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fontSize=15;" parent="1" vertex="1">
+                    <mxGeometry x="461" y="440" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Comic Sans MS;startArrow=classic;startFill=1;endArrow=none;endFill=0;fontSize=15;" parent="1" source="YjdWproPRwVd0udE6Smj-8" target="YjdWproPRwVd0udE6Smj-30" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="" style="edgeStyle=none;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;" edge="1" parent="1" source="YjdWproPRwVd0udE6Smj-8" target="5">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-8" value="&lt;span style=&quot;font-size: 15px;&quot;&gt;实际验证结果&lt;br&gt;benchmark&lt;br&gt;&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fontSize=15;" parent="1" vertex="1">
+                    <mxGeometry x="461" y="660" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-12" value="序列并行创新改进" style="whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fontSize=15;" parent="1" vertex="1">
+                    <mxGeometry x="641" y="440" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-13" value="提出支持3d attention的序列并行方案" style="whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fontSize=15;" parent="1" vertex="1">
+                    <mxGeometry x="641" y="570" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-23" value="" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Comic Sans MS;dashed=1;dashPattern=8 8;fontSize=15;" parent="1" vertex="1">
+                    <mxGeometry x="761" y="430" width="289" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-24" value="流水线思想融合" style="whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fontSize=15;" parent="1" vertex="1">
+                    <mxGeometry x="910" y="450" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-25" value="切分时机改进" style="whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fontSize=15;" parent="1" vertex="1">
+                    <mxGeometry x="781" y="450" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-30" value="&lt;span style=&quot;font-size: 15px;&quot;&gt;西擎超算平台&lt;br&gt;验证&lt;br&gt;&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fontSize=15;" parent="1" vertex="1">
+                    <mxGeometry x="250" y="660" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-36" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=15;" parent="1" source="YjdWproPRwVd0udE6Smj-34" target="YjdWproPRwVd0udE6Smj-2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-34" value="&lt;span style=&quot;font-size: 15px;&quot;&gt;量化混合并行&lt;br&gt;选择策略&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fontSize=15;" parent="1" vertex="1">
+                    <mxGeometry x="250" y="440" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" style="edgeStyle=none;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;" edge="1" parent="1" source="2" target="YjdWproPRwVd0udE6Smj-8">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="&lt;span style=&quot;font-size: 15px;&quot;&gt;多节点推理与性能优化&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fontSize=15;" vertex="1" parent="1">
+                    <mxGeometry x="645.5" y="660" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="&lt;span style=&quot;font-size: 15px;&quot;&gt;结合数据并行&lt;br&gt;ZeRO&lt;br&gt;&lt;/span&gt;" style="whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fontSize=15;hachureGap=4;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;" vertex="1" parent="1">
+                    <mxGeometry x="461" y="800" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="" style="group" vertex="1" connectable="0" parent="1">
+                    <mxGeometry x="641" y="190" width="410" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-19" value="" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;fontFamily=Comic Sans MS;dashed=1;dashPattern=8 8;fontSize=15;" parent="7" vertex="1">
+                    <mxGeometry y="60" width="410" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-10" value="主流序列并行支持" style="whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fontSize=15;" parent="7" vertex="1">
+                    <mxGeometry x="1" width="129" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-14" value="DeepSpeed-Ulysses" style="whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fontSize=15;" parent="7" vertex="1">
+                    <mxGeometry x="150" y="80" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-15" value="Megatron-LM" style="whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fontSize=15;" parent="7" vertex="1">
+                    <mxGeometry x="16" y="80" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-16" value="Ring attention" style="whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fontSize=15;" parent="7" vertex="1">
+                    <mxGeometry x="280" y="80" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-17" value="USP" style="whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fontSize=15;" parent="7" vertex="1">
+                    <mxGeometry x="90" y="150" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="YjdWproPRwVd0udE6Smj-18" value="DSP" style="whiteSpace=wrap;html=1;rounded=1;labelBackgroundColor=none;fillColor=#A8DADC;strokeColor=#457B9D;fontColor=#1D3557;sketch=1;curveFitting=1;jiggle=2;fontFamily=Comic Sans MS;fontSize=15;" parent="7" vertex="1">
+                    <mxGeometry x="216" y="150" width="120" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
