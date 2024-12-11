@@ -667,7 +667,7 @@ class CogVideoXPipeline(VideoSysPipeline):
         # 6. Prepare extra step kwargs. TODO: Logic should ideally just be moved out of the pipeline
         extra_step_kwargs = self.prepare_extra_step_kwargs(generator, eta)
 
-        # 7. Create rotary embeds if required
+        # 7. Create rotary embeds if required,暂时不需要
         image_rotary_emb = (
             self._prepare_rotary_positional_embeddings(height, width, latents.size(1), device)
             if self.transformer.config.use_rotary_positional_embeddings
@@ -684,7 +684,7 @@ class CogVideoXPipeline(VideoSysPipeline):
                 if self.interrupt:
                     continue
 
-                latent_model_input = torch.cat([latents] * 2) if do_classifier_free_guidance else latents
+                latent_model_input = torch.cat([latents] * 2) if do_classifier_free_guidance else latents #cfg给他乘二
                 latent_model_input = self.scheduler.scale_model_input(latent_model_input, t)
 
                 # broadcast to batch dimension in a way that's compatible with ONNX/Core ML
@@ -706,12 +706,12 @@ class CogVideoXPipeline(VideoSysPipeline):
                         (1 - math.cos(math.pi * ((num_inference_steps - t.item()) / num_inference_steps) ** 5.0)) / 2
                     )
                 if do_classifier_free_guidance:
-                    noise_pred_uncond, noise_pred_text = noise_pred.chunk(2)
-                    noise_pred = noise_pred_uncond + self.guidance_scale * (noise_pred_text - noise_pred_uncond)
+                    noise_pred_uncond, noise_pred_text = noise_pred.chunk(2) #沿axis=0,切开成两份
+                    noise_pred = noise_pred_uncond + self.guidance_scale * (noise_pred_text - noise_pred_uncond) #缩放加和,1uncond + 6(text-uncond)
 
                 # compute the previous noisy sample x_t -> x_t-1
                 if not isinstance(self.scheduler, CogVideoXDPMScheduler):
-                    latents = self.scheduler.step(noise_pred, t, latents, **extra_step_kwargs, return_dict=False)[0]
+                    latents = self.scheduler.step(noise_pred, t, latents, **extra_step_kwargs, return_dict=False)[0] #用这个调度器的step
                 else:
                     latents, old_pred_original_sample = self.scheduler.step(
                         noise_pred,
@@ -750,7 +750,7 @@ class CogVideoXPipeline(VideoSysPipeline):
         if not return_dict:
             return (video,)
 
-        return VideoSysPipelineOutput(video=video)
+        return VideoSysPipelineOutput(video=video) #走这里
 
     def save_video(self, video, output_path):
         save_video(video, output_path, fps=8)

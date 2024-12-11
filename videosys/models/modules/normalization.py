@@ -40,10 +40,10 @@ class CogVideoXLayerNormZero(nn.Module):
     def forward(
         self, hidden_states: torch.Tensor, encoder_hidden_states: torch.Tensor, temb: torch.Tensor
     ) -> Tuple[torch.Tensor, torch.Tensor]:
-        shift, scale, gate, enc_shift, enc_scale, enc_gate = self.linear(self.silu(temb)).chunk(6, dim=1)
-        hidden_states = self.norm(hidden_states) * (1 + scale)[:, None, :] + shift[:, None, :]
+        shift, scale, gate, enc_shift, enc_scale, enc_gate = self.linear(self.silu(temb)).chunk(6, dim=1) #得到scale和shift. x(1+scale)+shift
+        hidden_states = self.norm(hidden_states) * (1 + scale)[:, None, :] + shift[:, None, :] #线性调制 
         encoder_hidden_states = self.norm(encoder_hidden_states) * (1 + enc_scale)[:, None, :] + enc_shift[:, None, :]
-        return hidden_states, encoder_hidden_states, gate[:, None, :], enc_gate[:, None, :]
+        return hidden_states, encoder_hidden_states, gate[:, None, :], enc_gate[:, None, :] #门控向外传递
 
 
 class AdaLayerNorm(nn.Module):

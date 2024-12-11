@@ -388,7 +388,7 @@ class CogVideoXDDIMScheduler(SchedulerMixin, ConfigMixin):
         prev_sample = a_t * sample + b_t * pred_original_sample
 
         if not return_dict:
-            return (prev_sample,)
+            return (prev_sample,) #走的这条，不用管他
 
         return DDIMSchedulerOutput(prev_sample=prev_sample, pred_original_sample=pred_original_sample)
 

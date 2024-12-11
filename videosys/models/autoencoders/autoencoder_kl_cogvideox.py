@@ -1178,10 +1178,10 @@ class AutoencoderKLCogVideoX(ModelMixin, ConfigMixin, FromOriginalModelMixin):
         #   - The biggest intermediate dimensions are: [1, 128, 9, 480, 720].
         #   - Assume fp16 (2 bytes per value).
         # Memory required: 1 * 128 * 9 * 480 * 720 * 24 * 2 / 1024**3 = 17.8 GB
-        #
+        
         # Memory assessment when using tiling:
         #   - Assume everything as above but now HxW is 240x360 by tiling in half
-        # Memory required: 1 * 128 * 9 * 240 * 360 * 24 * 2 / 1024**3 = 4.5 GB
+        # Memory required: 1 * 128 * 9 * 240 * 360 * 24 * 2 / 1024**3 = 4.5 GB 良好的节省显存的方案
 
         batch_size, num_channels, num_frames, height, width = z.shape
 

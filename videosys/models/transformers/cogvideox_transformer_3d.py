@@ -94,47 +94,50 @@ class CogVideoXAttnProcessor2_0:
         image_rotary_emb: Optional[torch.Tensor] = None,
     ) -> torch.Tensor:
         text_seq_length = encoder_hidden_states.size(1)
-
-        hidden_states = torch.cat([encoder_hidden_states, hidden_states], dim=1)
+        # 1.拼接文本和图像的hidden_states
+        hidden_states = torch.cat([encoder_hidden_states, hidden_states], dim=1) 
 
         batch_size, sequence_length, _ = (
             hidden_states.shape if encoder_hidden_states is None else encoder_hidden_states.shape
         )
-
+        # 2.准备注意力掩码
         if attention_mask is not None:
             attention_mask = attn.prepare_attention_mask(attention_mask, sequence_length, batch_size)
             attention_mask = attention_mask.view(batch_size, attn.heads, -1, attention_mask.shape[-1])
-
-        query = attn.to_q(hidden_states)
+        # 3.生成 Query、Key 和 Value
+        query = attn.to_q(hidden_states) #线性变化
         key = attn.to_k(hidden_states)
         value = attn.to_v(hidden_states)
-
+        # 4.对qkv应用all_to_all_comm，hidden_size发送，seq_len收集，序列并行处理
         if attn.parallel_manager.sp_size > 1:
             assert (
                 attn.heads % attn.parallel_manager.sp_size == 0
-            ), f"Number of heads {attn.heads} must be divisible by sequence parallel size {attn.parallel_manager.sp_size}"
+            ), f"Number of heads {attn.heads} must be divisible by sequence parallel size {attn.parallel_manager.sp_size}" 
+            print(f"Number of heads {attn.heads} must be divisible by sequence parallel size {attn.parallel_manager.sp_size}")
             attn_heads = attn.heads // attn.parallel_manager.sp_size
             # normally we operate pad for every all2all. but for more convient implementation
             # we move pad operation to encoder add and remove in cogvideo
-            query, key, value = map(
-                lambda x: all_to_all_comm(x, attn.parallel_manager.sp_group, scatter_dim=2, gather_dim=1),
+            query, key, value = map( #map还能这么用,给定函数应用于列表
+                lambda x: all_to_all_comm(x, attn.parallel_manager.sp_group, scatter_dim=2, gather_dim=1), #匿名函数,对x应用all_to_all_comm，hidden_size切分，seq_len合并
                 [query, key, value],
             )
+            print(f"all_to_all_comm,get query.shape is {query.shape}, key.shape is {key.shape}, value.shape is {value.shape}")
         else:
+            # print(f"No sp,go on!attn.heads is {attn.heads}")
             attn_heads = attn.heads
-
+        # 5. 计算内维度和头维度，调整qkv维度
         inner_dim = key.shape[-1]
         head_dim = inner_dim // attn_heads
 
         query = query.view(batch_size, -1, attn_heads, head_dim).transpose(1, 2)
         key = key.view(batch_size, -1, attn_heads, head_dim).transpose(1, 2)
         value = value.view(batch_size, -1, attn_heads, head_dim).transpose(1, 2)
-
+        # 6. qk正则化
         if attn.norm_q is not None:
             query = attn.norm_q(query)
         if attn.norm_k is not None:
             key = attn.norm_k(key)
-
+        # 7. 移除qkv的额外编码
         if attn.parallel_manager.sp_size > 1:
             # remove extra encoder for attention
             query, key, value = map(
@@ -142,8 +145,8 @@ class CogVideoXAttnProcessor2_0:
                 [query, key, value],
             )
 
-        # Apply RoPE if needed
-        if image_rotary_emb is not None:
+        # 8.Apply RoPE if needed
+        if image_rotary_emb is not None: #确实是None
             emb_len = image_rotary_emb[0].shape[0]
             query[:, :, text_seq_length : emb_len + text_seq_length] = apply_rotary_emb(
                 query[:, :, text_seq_length : emb_len + text_seq_length], image_rotary_emb
@@ -152,23 +155,23 @@ class CogVideoXAttnProcessor2_0:
                 key[:, :, text_seq_length : emb_len + text_seq_length] = apply_rotary_emb(
                     key[:, :, text_seq_length : emb_len + text_seq_length], image_rotary_emb
                 )
-
+        # 9. 运算 缩放 点积 注意力,并调整形态
         hidden_states = F.scaled_dot_product_attention(
             query, key, value, attn_mask=attention_mask, dropout_p=0.0, is_causal=False
         )
 
-        hidden_states = hidden_states.transpose(1, 2).reshape(batch_size, -1, attn_heads * head_dim)
-
+        hidden_states = hidden_states.transpose(1, 2).reshape(batch_size, -1, attn_heads * head_dim) #恢复[2,17776,1920],这里transpose不是很有必要
+        # 10.添加额外编码器,第二次all2all，将隐藏状态在序列长度维度（scatter_dim=1）上分散，在隐藏层维度（gather_dim=2）上收集
         if attn.parallel_manager.sp_size > 1:
             # add extra encoder for all_to_all
             hidden_states = self._add_extra_encoder(hidden_states, text_seq_length, attn)
             hidden_states = all_to_all_comm(hidden_states, attn.parallel_manager.sp_group, scatter_dim=1, gather_dim=2)
 
-        # linear proj
-        hidden_states = attn.to_out[0](hidden_states)
+        # 11. linear proj
+        hidden_states = attn.to_out[0](hidden_states) 
         # dropout
         hidden_states = attn.to_out[1](hidden_states)
-
+        # 12. 分离文本和图像的hidden_size
         encoder_hidden_states, hidden_states = hidden_states.split(
             [text_seq_length, hidden_states.size(1) - text_seq_length], dim=1
         )
@@ -242,7 +245,7 @@ class CogVideoXBlock(nn.Module):
             eps=1e-6,
             bias=attention_bias,
             out_bias=attention_out_bias,
-            processor=CogVideoXAttnProcessor2_0(),
+            processor=CogVideoXAttnProcessor2_0(), #在这里去调用
         )
 
         # parallel
@@ -275,12 +278,12 @@ class CogVideoXBlock(nn.Module):
     ) -> torch.Tensor:
         text_seq_length = encoder_hidden_states.size(1)
 
-        # norm & modulate
+        # 1.norm & modulate
         norm_hidden_states, norm_encoder_hidden_states, gate_msa, enc_gate_msa = self.norm1(
             hidden_states, encoder_hidden_states, temb
         )
 
-        # attention
+        # 2.attention
         if enable_pab():
             broadcast_attn, self.attn_count = if_broadcast_spatial(int(timestep[0]), self.attn_count)
         if enable_pab() and broadcast_attn:
@@ -297,12 +300,12 @@ class CogVideoXBlock(nn.Module):
         hidden_states = hidden_states + gate_msa * attn_hidden_states
         encoder_hidden_states = encoder_hidden_states + enc_gate_msa * attn_encoder_hidden_states
 
-        # norm & modulate
+        # 3.norm & modulate
         norm_hidden_states, norm_encoder_hidden_states, gate_ff, enc_gate_ff = self.norm2(
             hidden_states, encoder_hidden_states, temb
         )
 
-        # feed-forward
+        # 4.feed-forward
         norm_hidden_states = torch.cat([norm_encoder_hidden_states, norm_hidden_states], dim=1)
         ff_output = self.ff(norm_hidden_states)
 
@@ -519,22 +522,22 @@ class CogVideoXTransformer3DModel(ModelMixin, ConfigMixin):
         # 3. Position embedding
         text_seq_length = encoder_hidden_states.shape[1]
         if not self.config.use_rotary_positional_embeddings:
-            seq_length = height * width * num_frames // (self.config.patch_size**2)
+            seq_length = height * width * num_frames // (self.config.patch_size**2) #总帧数除以patch数，得到空间序列长度
 
-            pos_embeds = self.pos_embedding[:, : text_seq_length + seq_length]
-            hidden_states = hidden_states + pos_embeds
+            pos_embeds = self.pos_embedding[:, : text_seq_length + seq_length] #截取对应的pos_embeds
+            hidden_states = hidden_states + pos_embeds #位置嵌入 对应位置加起来,感知位置
             hidden_states = self.embedding_dropout(hidden_states)
 
         encoder_hidden_states = hidden_states[:, :text_seq_length]
         hidden_states = hidden_states[:, text_seq_length:]
 
-        if self.parallel_manager.sp_size > 1:
-            set_pad("pad", hidden_states.shape[1], self.parallel_manager.sp_group)
-            hidden_states = split_sequence(hidden_states, self.parallel_manager.sp_group, dim=1, pad=get_pad("pad"))
+        if self.parallel_manager.sp_size > 1: #如果并行
+            set_pad("pad", hidden_states.shape[1], self.parallel_manager.sp_group) #填充
+            hidden_states = split_sequence(hidden_states, self.parallel_manager.sp_group, dim=1, pad=get_pad("pad")) #分割
 
         # 4. Transformer blocks
         for i, block in enumerate(self.transformer_blocks):
-            if self.training and self.gradient_checkpointing:
+            if self.training and self.gradient_checkpointing: #训练路径，不走这里
 
                 def create_custom_forward(module):
                     def custom_forward(*inputs):
@@ -578,7 +581,7 @@ class CogVideoXTransformer3DModel(ModelMixin, ConfigMixin):
 
         # 6. Unpatchify
         p = self.config.patch_size
-        output = hidden_states.reshape(batch_size, num_frames, height // p, width // p, channels, p, p)
+        output = hidden_states.reshape(batch_size, num_frames, height // p, width // p, channels, p, p) 
         output = output.permute(0, 1, 4, 2, 5, 3, 6).flatten(5, 6).flatten(3, 4)
 
         if self.parallel_manager.cp_size > 1:
