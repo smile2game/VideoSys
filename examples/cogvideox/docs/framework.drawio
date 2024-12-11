@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="3hE053ZPc2h7RsrpEtxz" name="第 1 页">
-        <mxGraphModel dx="1977" dy="552" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+        <mxGraphModel dx="1753" dy="499" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -27,6 +27,9 @@
                 </mxCell>
                 <mxCell id="34" value="&lt;div data-docx-has-block-data=&quot;false&quot; data-lark-html-role=&quot;root&quot; data-page-id=&quot;HkV0dZt13oCEn7xoSg5cNZIpnHd&quot; style=&quot;font-size: 14px;&quot;&gt;&lt;div class=&quot;old-record-id-X1DFdvIMaorpNbxsa4kc5Xtonff&quot; style=&quot;font-size: 14px;&quot;&gt;&lt;div style=&quot;border-color: var(--border-color); text-align: center;&quot; class=&quot;old-record-id-BqKcdmSZCoitDuxqezPcdQoInPd&quot;&gt;CogVideoX&lt;/div&gt;&lt;div style=&quot;border-color: var(--border-color); text-align: center;&quot; class=&quot;old-record-id-BqKcdmSZCoitDuxqezPcdQoInPd&quot;&gt;Pipeline&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;verticalAlign=top;align=left;fontSize=14;" parent="1" vertex="1">
                     <mxGeometry x="310" y="170" width="190" height="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="107" style="edgeStyle=none;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;" edge="1" parent="1" source="4" target="106">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="4" value="&lt;div data-docx-has-block-data=&quot;false&quot; data-lark-html-role=&quot;root&quot; data-page-id=&quot;HkV0dZt13oCEn7xoSg5cNZIpnHd&quot; style=&quot;font-size: 14px;&quot;&gt;&lt;div class=&quot;old-record-id-X1DFdvIMaorpNbxsa4kc5Xtonff&quot; style=&quot;font-size: 14px;&quot;&gt;CogVideoX&lt;/div&gt;&lt;div class=&quot;old-record-id-X1DFdvIMaorpNbxsa4kc5Xtonff&quot; style=&quot;font-size: 14px;&quot;&gt;Transformer3DModel&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=14;" parent="1" vertex="1">
                     <mxGeometry x="530" y="270" width="120" height="60" as="geometry"/>
@@ -126,6 +129,15 @@
                 </mxCell>
                 <mxCell id="103" style="edgeStyle=none;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;" parent="1" source="69" target="96" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="111" value="" style="edgeStyle=none;sketch=1;hachureGap=4;jiggle=2;curveFitting=1;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;" edge="1" parent="1" source="106" target="110">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="106" value="&lt;div data-docx-has-block-data=&quot;false&quot; data-lark-html-role=&quot;root&quot; data-page-id=&quot;HkV0dZt13oCEn7xoSg5cNZIpnHd&quot; style=&quot;font-size: 14px;&quot;&gt;&lt;div class=&quot;old-record-id-X1DFdvIMaorpNbxsa4kc5Xtonff&quot; style=&quot;font-size: 14px;&quot;&gt;Parallel&lt;/div&gt;&lt;div class=&quot;old-record-id-X1DFdvIMaorpNbxsa4kc5Xtonff&quot; style=&quot;font-size: 14px;&quot;&gt;Manager&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=14;align=left;verticalAlign=top;" vertex="1" parent="1">
+                    <mxGeometry x="740" y="270" width="80" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="110" value="&lt;div style=&quot;color: rgb(204, 204, 204); background-color: rgb(31, 31, 31); font-family: Consolas, &amp;quot;Courier New&amp;quot;, &amp;quot;SF Pro&amp;quot;, Consolas, &amp;quot;Courier New&amp;quot;, monospace; font-size: 20px; line-height: 27px;&quot;&gt;&lt;span style=&quot;color: #dcdcaa;&quot;&gt;forward&lt;/span&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;fontSize=14;fontFamily=Architects Daughter;align=center;verticalAlign=middle;rounded=1;sketch=1;curveFitting=1;jiggle=2;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;hachureGap=4;" vertex="1" parent="1">
+                    <mxGeometry x="720" y="360" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
