@@ -1,0 +1,5 @@
+path,text,num_frames,height,width
+./assets/example_data/suv-in-the-dust.mp4,suv in the dust,1,480,854
+./assets/example_data/suv-in-the-dust.mp4,suv in the dust,51,480,854
+./assets/example_data/suv-in-the-dust.mp4,suv in the dust,102,480,854
+./assets/example_data/suv-in-the-dust.mp4,suv in the dust,204,480,854
