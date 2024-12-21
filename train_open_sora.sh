@@ -1,0 +1,1 @@
+bash examples/training/open_sora/train.sh

@@ -69,11 +69,13 @@ def main(args):
     logging.info("Building models...")
 
     # == build text-encoder and vae ==
-    text_encoder = T5EncoderModel.from_pretrained("DeepFloyd/t5-v1_1-xxl", torch_dtype=dtype).to(device).eval()
-    tokenizer = AutoTokenizer.from_pretrained("DeepFloyd/t5-v1_1-xxl")
+    text_encoder = T5EncoderModel.from_pretrained("/home/pod/shared-nvme/t5-v1_1-xxl", torch_dtype=dtype).to(device).eval()
+#     tokenizer = AutoTokenizer.from_pretrained("DeepFloyd/t5-v1_1-xxl")
+    tokenizer = AutoTokenizer.from_pretrained("/home/pod/shared-nvme/t5-v1_1-xxl")
     vae = (
         OpenSoraVAE_V1_2(
-            from_pretrained="hpcai-tech/OpenSora-VAE-v1.2",
+#             from_pretrained="hpcai-tech/OpenSora-VAE-v1.2",
+            from_pretrained="/home/pod/shared-nvme/OpenSora-VAE-v1.2",
             micro_frame_size=17,
             micro_batch_size=4,
         )

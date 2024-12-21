@@ -1,0 +1,5 @@
+wandb
+av
+cv2
+pandas
+opencv-python-headless
