@@ -1,0 +1,249 @@
+[2024-12-23 23:29:58] [INFO] [train.py:70:main]   Experiment directory created at exp/baseline/006-OpenSora
+[2024-12-23 23:29:58] [INFO] [train.py:71:main]   Training configuration:
+ {'adam_eps': 1e-15,
+ 'alloc_memory_fraction': 0.7,
+ 'auto_grad_accumulation': False,
+ 'batch_size': None,
+ 'bucket_config': {'144p': {1: [1.0, 345],
+                            51: [1.0, 48],
+                            102: [1.0, 25],
+                            204: [1.0, 12],
+                            408: [1.0, 6]},
+                   '240p': {1: [1.0, 128],
+                            51: [1.0, 16],
+                            102: [1.0, 8],
+                            204: [1.0, 4],
+                            408: [1.0, 2]},
+                   '360p': {1: [1.0, 64],
+                            51: [1.0, 7],
+                            102: [1.0, 4],
+                            204: [1.0, 2],
+                            408: [1.0, 1]},
+                   '480p': {1: [1.0, 32],
+                            51: [1.0, 4],
+                            102: [1.0, 2],
+                            204: [1.0, 1],
+                            408: [1.0, 1]},
+                   '720p': {1: [1.0, 14],
+                            51: [1.0, 1],
+                            102: [1.0, 1],
+                            204: [1.0, 1],
+                            408: [1.0, 1]}},
+ 'calculate_imbalance': True,
+ 'ckpt_every': -1,
+ 'ckpt_path': '/root/shared-nvme/OpenSora-STDiT-v3',
+ 'common_ar': {'144p': {'0.56': [144, 256]},
+               '240p': {'0.56': [240, 426]},
+               '360p': {'0.56': [360, 640]},
+               '480p': {'0.56': [480, 854]},
+               '720p': {'0.56': [720, 1280]}},
+ 'config': 'examples/training/open_sora/configs/benchmarks/baseline.yaml',
+ 'data_path': './assets/example_data/demo_preprocess.csv',
+ 'distributed_profile': False,
+ 'distribution': 'zipf',
+ 'drop_last': True,
+ 'dtype': 'bf16',
+ 'dummy_data_size': 20,
+ 'dummy_dataset': True,
+ 'dynamic_recompute': False,
+ 'dynamic_sp': False,
+ 'ema_decay': 0.99,
+ 'epochs': 1,
+ 'grad_checkpoint': True,
+ 'grad_clip': 1.0,
+ 'image_mixing_frac': 50,
+ 'image_mixing_type': 'exclusive',
+ 'load': None,
+ 'log_every': 10000000000.0,
+ 'lr': 1e-08,
+ 'mask_ratios': {'image_head': 0.22,
+                 'image_head_tail': 0.005,
+                 'image_random': 0.0,
+                 'image_tail': 0.005,
+                 'intepolate': 0.002,
+                 'quarter_head': 0.002,
+                 'quarter_head_tail': 0.002,
+                 'quarter_random': 0.002,
+                 'quarter_tail': 0.002,
+                 'random': 0.01},
+ 'max_grad_accumulation_steps': 3,
+ 'min_grad_accumulation_steps': 2,
+ 'no_global_interpolation': False,
+ 'num_bucket_build_workers': 16,
+ 'num_workers': 2,
+ 'outputs': 'exp/baseline',
+ 'prefetch_factor': 2,
+ 'preprocessed_data': True,
+ 'profile_path': 'exp/profile/baseline',
+ 'reduce_bucket_size_in_m': 20,
+ 'save_optimizer': False,
+ 'seed': 42,
+ 'sp_size': 2,
+ 'start_from_scratch': False,
+ 'verbose': True,
+ 'wandb': False,
+ 'warmup_steps': 10,
+ 'weight_decay': 0,
+ 'zipf_offset': 5}
+[2024-12-23 23:29:59] [INFO] [parallel_mgr.py:39:__init__]   Init parallel manager with dp_size: 1, cp_size: 1, sp_size: 2
+[2024-12-23 23:29:59] [INFO] [train.py:86:main]   [ATTENTION!] Profile file is not found at `exp/profile/baseline`! Profiling will be performed then exit.
+[2024-12-23 23:29:59] [INFO] [train.py:95:main]   Building models...
+[2024-12-23 23:30:02] [INFO] [train.py:114:main]   [Diffusion] Trainable model params: 1.12 B, Total model params: 1.12 B
+[2024-12-23 23:30:02] [INFO] [utils.py:269:__init__]   mask ratios: {'random': 0.01, 'intepolate': 0.002, 'quarter_random': 0.002, 'quarter_head': 0.002, 'quarter_tail': 0.002, 'quarter_head_tail': 0.002, 'image_random': 0.0, 'image_head': 0.22, 'image_tail': 0.005, 'image_head_tail': 0.005, 'identity': 0.75}
+[2024-12-23 23:30:02] [INFO] [train.py:156:main]   Building dataset...
+[2024-12-23 23:30:02] [INFO] [profiler.py:314:_load_profile]   Profile results: {}
+[2024-12-23 23:30:02] [INFO] [datasets.py:260:__init__]   common ar for data synthesis: {'144p': (144, {'0.56': [144, 256]}),
+ '240p': (240, {'0.56': [240, 426]}),
+ '360p': (360, {'0.56': [360, 640]}),
+ '480p': (480, {'0.56': [480, 854]}),
+ '720p': (720, {'0.56': [720, 1280]})}
+[2024-12-23 23:30:02] [INFO] [datasets.py:405:_build_dummy_dataset]   build dummy dataset:
+bucket: ('144p', 1), cnt: 389
+bucket: ('240p', 1), cnt: 246
+bucket: ('360p', 1), cnt: 165
+bucket: ('480p', 1), cnt: 116
+bucket: ('720p', 1), cnt: 84
+bucket: ('144p', 51), cnt: 8
+bucket: ('240p', 51), cnt: 4
+bucket: ('144p', 102), cnt: 2
+bucket: ('360p', 51), cnt: 2
+bucket: ('240p', 102), cnt: 1
+bucket: ('480p', 51), cnt: 1
+bucket: ('144p', 204), cnt: 1
+bucket: ('360p', 102), cnt: 1
+bucket: ('720p', 51), cnt: 0
+bucket: ('240p', 204), cnt: 0
+bucket: ('480p', 102), cnt: 0
+bucket: ('144p', 408), cnt: 0
+bucket: ('360p', 204), cnt: 0
+bucket: ('720p', 102), cnt: 0
+bucket: ('240p', 408), cnt: 0
+bucket: ('480p', 204), cnt: 0
+bucket: ('360p', 408), cnt: 0
+bucket: ('720p', 204), cnt: 0
+bucket: ('480p', 408), cnt: 0
+bucket: ('720p', 408), cnt: 0
+default data_size: 20, full data size: 1020
+[2024-12-23 23:30:02] [INFO] [train.py:197:main]   Dataset contains 1020 samples.
+[2024-12-23 23:30:02] [INFO] [bucket.py:80:__init__]   Number of buckets: 425
+[2024-12-23 23:30:02] [INFO] [train.py:222:main]   Preparing for distributed training...
+[2024-12-23 23:30:05] [INFO] [train.py:248:main]   Boosting model for distributed training
+[2024-12-23 23:30:05] [INFO] [profiler.py:494:register_modules]   >>> [Profiling] Profile with grad accumulation, unit grad in bytes: 0
+[2024-12-23 23:30:05] [INFO] [train.py:281:main]   Training for 1 epochs with profiling.
+[2024-12-23 23:30:05] [INFO] [recompute.py:20:__init__]   module keys: ['spatial', 'temporal']
+[2024-12-23 23:30:05] [INFO] [train.py:305:main]   Beginning Profiling...
+[2024-12-23 23:30:07] [INFO] [profiler.py:550:profile]   >>> [Profiling] Bucket 720p 408 at 1 sp 2 doesn't pass profile, OOM!
+[2024-12-23 23:30:07] [INFO] [profiler.py:721:profile]   >>> [Profiling] SKIP bucket 720p 408 which cannot fit into the cluster
+[2024-12-23 23:30:07] [INFO] [profiler.py:550:profile]   >>> [Profiling] Bucket 720p 204 at 1 sp 2 doesn't pass profile, OOM!
+[2024-12-23 23:30:07] [INFO] [profiler.py:721:profile]   >>> [Profiling] SKIP bucket 720p 204 which cannot fit into the cluster
+[2024-12-23 23:30:08] [INFO] [profiler.py:550:profile]   >>> [Profiling] Bucket 480p 408 at 1 sp 2 doesn't pass profile, OOM!
+[2024-12-23 23:30:08] [INFO] [profiler.py:721:profile]   >>> [Profiling] SKIP bucket 480p 408 which cannot fit into the cluster
+[2024-12-23 23:30:10] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 360p 408 at 1 sp 2 pass profile but exceed memory limit: 22.03/16.55 GB
+[2024-12-23 23:30:10] [INFO] [profiler.py:721:profile]   >>> [Profiling] SKIP bucket 360p 408 which cannot fit into the cluster
+[2024-12-23 23:30:11] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 720p 102 at 1 sp 2 pass profile but exceed memory limit: 21.79/16.55 GB
+[2024-12-23 23:30:11] [INFO] [profiler.py:721:profile]   >>> [Profiling] SKIP bucket 720p 102 which cannot fit into the cluster
+[2024-12-23 23:30:12] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 480p 204 at 1 sp 2 pass profile but exceed memory limit: 20.53/16.55 GB
+[2024-12-23 23:30:12] [INFO] [profiler.py:721:profile]   >>> [Profiling] SKIP bucket 480p 204 which cannot fit into the cluster
+[2024-12-23 23:30:13] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 360p 204 at 1 sp 2 pass profile but exceed memory limit: 17.61/16.55 GB
+[2024-12-23 23:30:13] [INFO] [profiler.py:721:profile]   >>> [Profiling] SKIP bucket 360p 204 which cannot fit into the cluster
+[2024-12-23 23:30:14] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 720p 51 at 1 sp 2 pass profile but exceed memory limit: 17.54/16.55 GB
+[2024-12-23 23:30:14] [INFO] [profiler.py:721:profile]   >>> [Profiling] SKIP bucket 720p 51 which cannot fit into the cluster
+[2024-12-23 23:30:15] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 480p 102 at 1 sp 2 pass profile but exceed memory limit: 17.19/16.55 GB
+[2024-12-23 23:30:15] [INFO] [profiler.py:721:profile]   >>> [Profiling] SKIP bucket 480p 102 which cannot fit into the cluster
+[2024-12-23 23:30:16] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 240p 408 at 1 sp 2 pass profile but exceed memory limit: 17.25/16.55 GB
+[2024-12-23 23:30:16] [INFO] [profiler.py:721:profile]   >>> [Profiling] SKIP bucket 240p 408 which cannot fit into the cluster
+[2024-12-23 23:30:19] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 360p 102 at 2 sp 2 pass profile but exceed memory limit: 17.61/16.55 GB
+[2024-12-23 23:30:19] [INFO] [profiler.py:727:profile]   >>> [Profiling] STOP BS search for bucket 360p 102 at 2 sp 2
+[2024-12-23 23:30:19] [WARNING] [profiler.py:744:profile]   dp_results has only one element. Using dp_results[0] instead of dp_results[-2].
+[2024-12-23 23:30:21] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 480p 51 at 2 sp 2 pass profile but exceed memory limit: 17.19/16.55 GB
+[2024-12-23 23:30:21] [INFO] [profiler.py:727:profile]   >>> [Profiling] STOP BS search for bucket 480p 51 at 2 sp 2
+[2024-12-23 23:30:21] [WARNING] [profiler.py:744:profile]   dp_results has only one element. Using dp_results[0] instead of dp_results[-2].
+[2024-12-23 23:30:23] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 240p 204 at 2 sp 2 pass profile but exceed memory limit: 17.25/16.55 GB
+[2024-12-23 23:30:23] [INFO] [profiler.py:727:profile]   >>> [Profiling] STOP BS search for bucket 240p 204 at 2 sp 2
+[2024-12-23 23:30:23] [WARNING] [profiler.py:744:profile]   dp_results has only one element. Using dp_results[0] instead of dp_results[-2].
+[2024-12-23 23:30:27] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 144p 408 at 4 sp 2 pass profile but exceed memory limit: 18.40/16.55 GB
+[2024-12-23 23:30:27] [INFO] [profiler.py:727:profile]   >>> [Profiling] STOP BS search for bucket 144p 408 at 4 sp 2
+[2024-12-23 23:30:31] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 360p 51 at 4 sp 2 pass profile but exceed memory limit: 17.62/16.55 GB
+[2024-12-23 23:30:31] [INFO] [profiler.py:727:profile]   >>> [Profiling] STOP BS search for bucket 360p 51 at 4 sp 2
+[2024-12-23 23:30:34] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 240p 102 at 4 sp 2 pass profile but exceed memory limit: 17.26/16.55 GB
+[2024-12-23 23:30:34] [INFO] [profiler.py:727:profile]   >>> [Profiling] STOP BS search for bucket 240p 102 at 4 sp 2
+[2024-12-23 23:30:39] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 144p 204 at 8 sp 2 pass profile but exceed memory limit: 18.41/16.55 GB
+[2024-12-23 23:30:39] [INFO] [profiler.py:727:profile]   >>> [Profiling] STOP BS search for bucket 144p 204 at 8 sp 2
+[2024-12-23 23:30:44] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 240p 51 at 8 sp 2 pass profile but exceed memory limit: 17.27/16.55 GB
+[2024-12-23 23:30:44] [INFO] [profiler.py:727:profile]   >>> [Profiling] STOP BS search for bucket 240p 51 at 8 sp 2
+[2024-12-23 23:30:51] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 144p 102 at 16 sp 2 pass profile but exceed memory limit: 18.44/16.55 GB
+[2024-12-23 23:30:51] [INFO] [profiler.py:727:profile]   >>> [Profiling] STOP BS search for bucket 144p 102 at 16 sp 2
+[2024-12-23 23:30:59] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 144p 51 at 32 sp 2 pass profile but exceed memory limit: 18.50/16.55 GB
+[2024-12-23 23:30:59] [INFO] [profiler.py:727:profile]   >>> [Profiling] STOP BS search for bucket 144p 51 at 32 sp 2
+[2024-12-23 23:31:05] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 720p 1 at 16 sp 2 pass profile but exceed memory limit: 17.80/16.55 GB
+[2024-12-23 23:31:05] [INFO] [profiler.py:727:profile]   >>> [Profiling] STOP BS search for bucket 720p 1 at 16 sp 2
+[2024-12-23 23:31:13] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 480p 1 at 32 sp 2 pass profile but exceed memory limit: 17.48/16.55 GB
+[2024-12-23 23:31:13] [INFO] [profiler.py:727:profile]   >>> [Profiling] STOP BS search for bucket 480p 1 at 32 sp 2
+[2024-12-23 23:31:22] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 360p 1 at 64 sp 2 pass profile but exceed memory limit: 18.04/16.55 GB
+[2024-12-23 23:31:22] [INFO] [profiler.py:727:profile]   >>> [Profiling] STOP BS search for bucket 360p 1 at 64 sp 2
+[2024-12-23 23:31:34] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 240p 1 at 128 sp 2 pass profile but exceed memory limit: 17.89/16.55 GB
+[2024-12-23 23:31:34] [INFO] [profiler.py:727:profile]   >>> [Profiling] STOP BS search for bucket 240p 1 at 128 sp 2
+[2024-12-23 23:31:50] [INFO] [profiler.py:566:profile]   >>> [Profiling] Bucket 144p 1 at 256 sp 2 pass profile but exceed memory limit: 17.51/16.55 GB
+[2024-12-23 23:31:50] [INFO] [profiler.py:727:profile]   >>> [Profiling] STOP BS search for bucket 144p 1 at 256 sp 2
+[2024-12-23 23:31:50] [INFO] [profiler.py:426:finalize_profile]   >>> [Profiling] Profile cost: 104.14 s
+[2024-12-23 23:31:50] [INFO] [profiler.py:427:finalize_profile]   >>> [Profiling] Profile results: {'360p': {102: {'sp_size': 2,
+                'max': {'bs': 1,
+                        'execution_time': 2.6790363788604736,
+                        'memory_consumed': 16.067548274993896}},
+          51: {'sp_size': 2,
+               'max': {'bs': 2,
+                       'execution_time': 2.5883829593658447,
+                       'memory_consumed': 16.071178436279297}},
+          1: {'sp_size': 2,
+              'max': {'bs': 32,
+                      'execution_time': 2.496967315673828,
+                      'memory_consumed': 16.282785415649414}}},
+ '480p': {51: {'sp_size': 2,
+               'max': {'bs': 1,
+                       'execution_time': 2.4502651691436768,
+                       'memory_consumed': 15.85824203491211}},
+          1: {'sp_size': 2,
+              'max': {'bs': 16,
+                      'execution_time': 2.2669897079467773,
+                      'memory_consumed': 16.001445293426514}}},
+ '240p': {204: {'sp_size': 2,
+                'max': {'bs': 1,
+                        'execution_time': 2.3083910942077637,
+                        'memory_consumed': 15.88669490814209}},
+          102: {'sp_size': 2,
+                'max': {'bs': 2,
+                        'execution_time': 2.338047981262207,
+                        'memory_consumed': 15.89032506942749}},
+          51: {'sp_size': 2,
+               'max': {'bs': 4,
+                       'execution_time': 2.2771849632263184,
+                       'memory_consumed': 15.897584915161133}},
+          1: {'sp_size': 2,
+              'max': {'bs': 64,
+                      'execution_time': 2.4380645751953125,
+                      'memory_consumed': 16.206035614013672}}},
+ '144p': {408: {'sp_size': 2,
+                'max': {'bs': 2,
+                        'execution_time': 2.9897022247314453,
+                        'memory_consumed': 16.459701538085938}},
+          204: {'sp_size': 2,
+                'max': {'bs': 4,
+                        'execution_time': 3.112579345703125,
+                        'memory_consumed': 16.46696138381958}},
+          102: {'sp_size': 2,
+                'max': {'bs': 8,
+                        'execution_time': 3.085435390472412,
+                        'memory_consumed': 16.481481552124023}},
+          51: {'sp_size': 2,
+               'max': {'bs': 16,
+                       'execution_time': 3.167543649673462,
+                       'memory_consumed': 16.510521411895752}},
+          1: {'sp_size': 2,
+              'max': {'bs': 128,
+                      'execution_time': 2.155815839767456,
+                      'memory_consumed': 16.01682186126709}}},
+ '720p': {1: {'sp_size': 2,
+              'max': {'bs': 8,
+                      'execution_time': 2.562439441680908,
+                      'memory_consumed': 16.15995979309082}}}}
+[2024-12-23 23:31:50] [INFO] [train.py:441:main]   Profiling is done and saved to exp/profile/baseline. Please restart this programe for training with `profile_path: exp/profile/baseline` in the config file. Exiting...

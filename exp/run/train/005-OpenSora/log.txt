@@ -1,0 +1,125 @@
+[2024-12-24 01:09:22] [INFO] [train.py:70:main]   Experiment directory created at exp/run/train/005-OpenSora
+[2024-12-24 01:09:22] [INFO] [train.py:71:main]   Training configuration:
+ {'adam_eps': 1e-08,
+ 'alloc_memory_fraction': 0.65,
+ 'auto_grad_accumulation': False,
+ 'batch_size': None,
+ 'bucket_config': {'480p': {1: [1.0, 32],
+                            51: [1.0, 4],
+                            102: [1.0, 2],
+                            204: [1.0, 1],
+                            408: [1.0, 1]}},
+ 'calculate_imbalance': False,
+ 'ckpt_every': 1000,
+ 'ckpt_path': None,
+ 'common_ar': {'144p': {'0.56': [144, 256]},
+               '240p': {'0.56': [240, 426]},
+               '360p': {'0.56': [360, 640]},
+               '480p': {'0.56': [480, 854]},
+               '720p': {'0.56': [720, 1280]}},
+ 'config': 'examples/training/open_sora/configs/train.yaml',
+ 'data_path': './assets/example_data/demo_preprocess.csv',
+ 'distributed_profile': False,
+ 'distribution': 'zipf',
+ 'drop_last': False,
+ 'dtype': 'bf16',
+ 'dummy_data_size': 100,
+ 'dummy_dataset': False,
+ 'dynamic_recompute': False,
+ 'dynamic_sp': False,
+ 'ema_decay': 0.99,
+ 'epochs': 100,
+ 'grad_checkpoint': True,
+ 'grad_clip': 1.0,
+ 'image_mixing_frac': 1,
+ 'image_mixing_type': 'exclusive',
+ 'load': None,
+ 'log_every': 1,
+ 'lr': 0.0001,
+ 'mask_ratios': {'image_head': 0.22,
+                 'image_head_tail': 0.005,
+                 'image_random': 0.0,
+                 'image_tail': 0.005,
+                 'intepolate': 0.002,
+                 'quarter_head': 0.002,
+                 'quarter_head_tail': 0.002,
+                 'quarter_random': 0.002,
+                 'quarter_tail': 0.002,
+                 'random': 0.01},
+ 'max_grad_accumulation_steps': 3,
+ 'min_grad_accumulation_steps': 2,
+ 'no_global_interpolation': False,
+ 'num_bucket_build_workers': 16,
+ 'num_workers': 8,
+ 'outputs': 'exp/run/train',
+ 'prefetch_factor': 2,
+ 'preprocessed_data': True,
+ 'profile_path': 'exp/profile/train',
+ 'reduce_bucket_size_in_m': 20,
+ 'save_optimizer': False,
+ 'seed': 42,
+ 'sp_size': 2,
+ 'start_from_scratch': False,
+ 'verbose': False,
+ 'wandb': True,
+ 'warmup_steps': 10,
+ 'weight_decay': 0,
+ 'zipf_offset': 5}
+[2024-12-24 01:09:24] [INFO] [parallel_mgr.py:39:__init__]   Init parallel manager with dp_size: 1, cp_size: 1, sp_size: 2
+[2024-12-24 01:09:24] [INFO] [train.py:95:main]   Building models...
+[2024-12-24 01:09:38] [INFO] [train.py:114:main]   [Diffusion] Trainable model params: 1.12 B, Total model params: 1.12 B
+[2024-12-24 01:09:38] [INFO] [utils.py:269:__init__]   mask ratios: {'random': 0.01, 'intepolate': 0.002, 'quarter_random': 0.002, 'quarter_head': 0.002, 'quarter_tail': 0.002, 'quarter_head_tail': 0.002, 'image_random': 0.0, 'image_head': 0.22, 'image_tail': 0.005, 'image_head_tail': 0.005, 'identity': 0.75}
+[2024-12-24 01:09:38] [INFO] [train.py:156:main]   Building dataset...
+[2024-12-24 01:09:38] [INFO] [profiler.py:314:_load_profile]   Profile results: {'480p': {1: {'sp_size': 2,
+              'max': {'bs': 4,
+                      'execution_time': 1.0004873275756836,
+                      'memory_consumed': 15.0556001663208}}}}
+[2024-12-24 01:09:38] [INFO] [datasets.py:145:__init__]   Repeat example data ./assets/example_data/demo_preprocess.csv 10 times (size: 4 -> 40) for easy training.
+[2024-12-24 01:09:38] [INFO] [train.py:197:main]   Dataset contains 40 samples.
+[2024-12-24 01:09:38] [INFO] [bucket.py:80:__init__]   Number of buckets: 85
+[2024-12-24 01:09:38] [INFO] [train.py:222:main]   Preparing for distributed training...
+[2024-12-24 01:09:41] [INFO] [train.py:248:main]   Boosting model for distributed training
+[2024-12-24 01:09:41] [INFO] [train.py:281:main]   Training for 100 epochs.
+[2024-12-24 01:09:42] [INFO] [train.py:305:main]   Beginning Epoch 0...
+[2024-12-24 01:09:46] [INFO] [train.py:429:main]   Epoch 0: steps: 3 elapsed time: 3.63 s, effective samples: 10, sample throughput: 2.75 samples/s, token throughput: 2817.17 token/s
+[2024-12-24 01:09:47] [INFO] [train.py:305:main]   Beginning Epoch 1...
+[2024-12-24 01:09:49] [INFO] [train.py:429:main]   Epoch 1: steps: 3 elapsed time: 2.68 s, effective samples: 10, sample throughput: 3.73 samples/s, token throughput: 3819.57 token/s
+[2024-12-24 01:09:50] [INFO] [train.py:305:main]   Beginning Epoch 2...
+[2024-12-24 01:09:53] [INFO] [train.py:429:main]   Epoch 2: steps: 3 elapsed time: 2.94 s, effective samples: 10, sample throughput: 3.40 samples/s, token throughput: 3482.44 token/s
+[2024-12-24 01:09:54] [INFO] [train.py:305:main]   Beginning Epoch 3...
+[2024-12-24 01:09:57] [INFO] [train.py:429:main]   Epoch 3: steps: 3 elapsed time: 3.10 s, effective samples: 10, sample throughput: 3.23 samples/s, token throughput: 3304.81 token/s
+[2024-12-24 01:09:58] [INFO] [train.py:305:main]   Beginning Epoch 4...
+[2024-12-24 01:10:01] [INFO] [train.py:429:main]   Epoch 4: steps: 3 elapsed time: 3.01 s, effective samples: 10, sample throughput: 3.32 samples/s, token throughput: 3399.52 token/s
+[2024-12-24 01:10:01] [INFO] [train.py:305:main]   Beginning Epoch 5...
+[2024-12-24 01:10:05] [INFO] [train.py:429:main]   Epoch 5: steps: 3 elapsed time: 3.21 s, effective samples: 10, sample throughput: 3.12 samples/s, token throughput: 3193.12 token/s
+[2024-12-24 01:10:05] [INFO] [train.py:305:main]   Beginning Epoch 6...
+[2024-12-24 01:10:08] [INFO] [train.py:429:main]   Epoch 6: steps: 3 elapsed time: 2.71 s, effective samples: 10, sample throughput: 3.69 samples/s, token throughput: 3780.36 token/s
+[2024-12-24 01:10:09] [INFO] [train.py:305:main]   Beginning Epoch 7...
+[2024-12-24 01:10:12] [INFO] [train.py:429:main]   Epoch 7: steps: 3 elapsed time: 3.37 s, effective samples: 10, sample throughput: 2.96 samples/s, token throughput: 3035.65 token/s
+[2024-12-24 01:10:13] [INFO] [train.py:305:main]   Beginning Epoch 8...
+[2024-12-24 01:10:16] [INFO] [train.py:429:main]   Epoch 8: steps: 3 elapsed time: 3.27 s, effective samples: 10, sample throughput: 3.06 samples/s, token throughput: 3131.75 token/s
+[2024-12-24 01:10:17] [INFO] [train.py:305:main]   Beginning Epoch 9...
+[2024-12-24 01:10:20] [INFO] [train.py:429:main]   Epoch 9: steps: 3 elapsed time: 2.87 s, effective samples: 10, sample throughput: 3.49 samples/s, token throughput: 3569.60 token/s
+[2024-12-24 01:10:21] [INFO] [train.py:305:main]   Beginning Epoch 10...
+[2024-12-24 01:10:24] [INFO] [train.py:429:main]   Epoch 10: steps: 3 elapsed time: 3.02 s, effective samples: 10, sample throughput: 3.31 samples/s, token throughput: 3385.82 token/s
+[2024-12-24 01:10:25] [INFO] [train.py:305:main]   Beginning Epoch 11...
+[2024-12-24 01:10:28] [INFO] [train.py:429:main]   Epoch 11: steps: 3 elapsed time: 3.05 s, effective samples: 10, sample throughput: 3.28 samples/s, token throughput: 3358.65 token/s
+[2024-12-24 01:10:29] [INFO] [train.py:305:main]   Beginning Epoch 12...
+[2024-12-24 01:10:31] [INFO] [train.py:429:main]   Epoch 12: steps: 3 elapsed time: 2.78 s, effective samples: 10, sample throughput: 3.60 samples/s, token throughput: 3687.42 token/s
+[2024-12-24 01:10:32] [INFO] [train.py:305:main]   Beginning Epoch 13...
+[2024-12-24 01:10:35] [INFO] [train.py:429:main]   Epoch 13: steps: 3 elapsed time: 2.98 s, effective samples: 10, sample throughput: 3.35 samples/s, token throughput: 3433.65 token/s
+[2024-12-24 01:10:36] [INFO] [train.py:305:main]   Beginning Epoch 14...
+[2024-12-24 01:10:39] [INFO] [train.py:429:main]   Epoch 14: steps: 3 elapsed time: 3.03 s, effective samples: 10, sample throughput: 3.30 samples/s, token throughput: 3381.33 token/s
+[2024-12-24 01:10:40] [INFO] [train.py:305:main]   Beginning Epoch 15...
+[2024-12-24 01:10:43] [INFO] [train.py:429:main]   Epoch 15: steps: 3 elapsed time: 3.19 s, effective samples: 10, sample throughput: 3.13 samples/s, token throughput: 3207.77 token/s
+[2024-12-24 01:10:44] [INFO] [train.py:305:main]   Beginning Epoch 16...
+[2024-12-24 01:10:47] [INFO] [train.py:429:main]   Epoch 16: steps: 3 elapsed time: 2.97 s, effective samples: 10, sample throughput: 3.37 samples/s, token throughput: 3452.25 token/s
+[2024-12-24 01:10:47] [INFO] [train.py:305:main]   Beginning Epoch 17...
+[2024-12-24 01:10:50] [INFO] [train.py:429:main]   Epoch 17: steps: 3 elapsed time: 3.10 s, effective samples: 10, sample throughput: 3.23 samples/s, token throughput: 3306.18 token/s
+[2024-12-24 01:10:51] [INFO] [train.py:305:main]   Beginning Epoch 18...
+[2024-12-24 01:10:54] [INFO] [train.py:429:main]   Epoch 18: steps: 3 elapsed time: 3.28 s, effective samples: 10, sample throughput: 3.05 samples/s, token throughput: 3125.77 token/s
+[2024-12-24 01:10:55] [INFO] [train.py:305:main]   Beginning Epoch 19...
+[2024-12-24 01:10:58] [INFO] [train.py:429:main]   Epoch 19: steps: 3 elapsed time: 3.26 s, effective samples: 10, sample throughput: 3.07 samples/s, token throughput: 3144.86 token/s
+[2024-12-24 01:10:59] [INFO] [train.py:305:main]   Beginning Epoch 20...
+[2024-12-24 01:11:02] [INFO] [train.py:429:main]   Epoch 20: steps: 3 elapsed time: 2.92 s, effective samples: 10, sample throughput: 3.43 samples/s, token throughput: 3510.42 token/s
+[2024-12-24 01:11:03] [INFO] [train.py:305:main]   Beginning Epoch 21...

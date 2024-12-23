@@ -1,9 +1,9 @@
 zipf_offset: 5
 outputs: exp/baseline
 profile_path: exp/profile/baseline
-sp_size: 4
+sp_size: 2
 dummy_dataset: true
-dummy_data_size: 2000
+dummy_data_size: 20
 verbose: true
 calculate_imbalance: true
 
@@ -16,9 +16,9 @@ preprocessed_data: true
 drop_last: true
 
 # train
-ckpt_path: "hpcai-tech/OpenSora-STDiT-v3"
+ckpt_path: "/root/shared-nvme/OpenSora-STDiT-v3"
 grad_checkpoint: True
-num_workers: 8
+num_workers: 2
 dtype: "bf16"
 
 # log

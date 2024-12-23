@@ -1,0 +1,88 @@
+[2024-12-24 00:50:24] [INFO] [train.py:70:main]   Experiment directory created at exp/run/train/003-OpenSora
+[2024-12-24 00:50:24] [INFO] [train.py:71:main]   Training configuration:
+ {'adam_eps': 1e-08,
+ 'alloc_memory_fraction': 0.65,
+ 'auto_grad_accumulation': False,
+ 'batch_size': None,
+ 'bucket_config': {'480p': {1: [1.0, 32],
+                            51: [1.0, 4],
+                            102: [1.0, 2],
+                            204: [1.0, 1],
+                            408: [1.0, 1]}},
+ 'calculate_imbalance': False,
+ 'ckpt_every': 1000,
+ 'ckpt_path': None,
+ 'common_ar': {'144p': {'0.56': [144, 256]},
+               '240p': {'0.56': [240, 426]},
+               '360p': {'0.56': [360, 640]},
+               '480p': {'0.56': [480, 854]},
+               '720p': {'0.56': [720, 1280]}},
+ 'config': 'examples/training/open_sora/configs/train.yaml',
+ 'data_path': './assets/example_data/demo_preprocess.csv',
+ 'distributed_profile': False,
+ 'distribution': 'zipf',
+ 'drop_last': False,
+ 'dtype': 'bf16',
+ 'dummy_data_size': 100,
+ 'dummy_dataset': False,
+ 'dynamic_recompute': False,
+ 'dynamic_sp': False,
+ 'ema_decay': 0.99,
+ 'epochs': 100,
+ 'grad_checkpoint': True,
+ 'grad_clip': 1.0,
+ 'image_mixing_frac': 1,
+ 'image_mixing_type': 'exclusive',
+ 'load': None,
+ 'log_every': 1,
+ 'lr': 0.0001,
+ 'mask_ratios': {'image_head': 0.22,
+                 'image_head_tail': 0.005,
+                 'image_random': 0.0,
+                 'image_tail': 0.005,
+                 'intepolate': 0.002,
+                 'quarter_head': 0.002,
+                 'quarter_head_tail': 0.002,
+                 'quarter_random': 0.002,
+                 'quarter_tail': 0.002,
+                 'random': 0.01},
+ 'max_grad_accumulation_steps': 3,
+ 'min_grad_accumulation_steps': 2,
+ 'no_global_interpolation': False,
+ 'num_bucket_build_workers': 16,
+ 'num_workers': 8,
+ 'outputs': 'exp/run/train',
+ 'prefetch_factor': 2,
+ 'preprocessed_data': True,
+ 'profile_path': 'exp/profile/train',
+ 'reduce_bucket_size_in_m': 20,
+ 'save_optimizer': False,
+ 'seed': 42,
+ 'sp_size': 2,
+ 'start_from_scratch': False,
+ 'verbose': False,
+ 'wandb': True,
+ 'warmup_steps': 10,
+ 'weight_decay': 0,
+ 'zipf_offset': 5}
+[2024-12-24 00:51:33] [INFO] [parallel_mgr.py:39:__init__]   Init parallel manager with dp_size: 1, cp_size: 1, sp_size: 2
+[2024-12-24 00:51:33] [INFO] [train.py:86:main]   [ATTENTION!] Profile file is not found at `exp/profile/train`! Profiling will be performed then exit.
+[2024-12-24 00:51:33] [INFO] [train.py:95:main]   Building models...
+[2024-12-24 00:51:46] [INFO] [train.py:114:main]   [Diffusion] Trainable model params: 1.12 B, Total model params: 1.12 B
+[2024-12-24 00:51:46] [INFO] [utils.py:269:__init__]   mask ratios: {'random': 0.01, 'intepolate': 0.002, 'quarter_random': 0.002, 'quarter_head': 0.002, 'quarter_tail': 0.002, 'quarter_head_tail': 0.002, 'image_random': 0.0, 'image_head': 0.22, 'image_tail': 0.005, 'image_head_tail': 0.005, 'identity': 0.75}
+[2024-12-24 00:51:46] [INFO] [train.py:156:main]   Building dataset...
+[2024-12-24 00:51:46] [INFO] [profiler.py:314:_load_profile]   Profile results: {}
+[2024-12-24 00:51:46] [INFO] [datasets.py:145:__init__]   Repeat example data ./assets/example_data/demo_preprocess.csv 10 times (size: 4 -> 40) for easy training.
+[2024-12-24 00:51:46] [INFO] [train.py:197:main]   Dataset contains 40 samples.
+[2024-12-24 00:51:46] [INFO] [bucket.py:80:__init__]   Number of buckets: 85
+[2024-12-24 00:51:46] [INFO] [train.py:222:main]   Preparing for distributed training...
+[2024-12-24 00:51:49] [INFO] [train.py:248:main]   Boosting model for distributed training
+[2024-12-24 00:51:49] [INFO] [train.py:281:main]   Training for 1 epochs with profiling.
+[2024-12-24 00:51:49] [INFO] [recompute.py:20:__init__]   module keys: ['spatial', 'temporal']
+[2024-12-24 00:51:49] [INFO] [train.py:305:main]   Beginning Profiling...
+[2024-12-24 00:51:57] [INFO] [profiler.py:426:finalize_profile]   >>> [Profiling] Profile cost: 8.02 s
+[2024-12-24 00:51:57] [INFO] [profiler.py:427:finalize_profile]   >>> [Profiling] Profile results: {'480p': {1: {'sp_size': 2,
+              'max': {'bs': 4,
+                      'execution_time': 1.0004873275756836,
+                      'memory_consumed': 15.0556001663208}}}}
+[2024-12-24 00:51:58] [INFO] [train.py:441:main]   Profiling is done and saved to exp/profile/train. Please restart this programe for training with `profile_path: exp/profile/train` in the config file. Exiting...

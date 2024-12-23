@@ -1,0 +1,5 @@
+path,text,num_frames,height,width,vae_emb,text_emb
+./assets/example_data/suv-in-the-dust.mp4,suv in the dust,1,480,854,assets/example_data/embs/suv-in-the-dust.mp4_0_vae.pt,assets/example_data/embs/suv-in-the-dust.mp4_0_text.pt
+./assets/example_data/suv-in-the-dust.mp4,suv in the dust,51,480,854,assets/example_data/embs/suv-in-the-dust.mp4_1_vae.pt,assets/example_data/embs/suv-in-the-dust.mp4_1_text.pt
+./assets/example_data/suv-in-the-dust.mp4,suv in the dust,102,480,854,assets/example_data/embs/suv-in-the-dust.mp4_0_vae.pt,assets/example_data/embs/suv-in-the-dust.mp4_0_text.pt
+./assets/example_data/suv-in-the-dust.mp4,suv in the dust,204,480,854,assets/example_data/embs/suv-in-the-dust.mp4_1_vae.pt,assets/example_data/embs/suv-in-the-dust.mp4_1_text.pt

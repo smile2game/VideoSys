@@ -736,7 +736,17 @@ class Profiler:
                     pred_full_time, pred_full_mem = self.estimate_overhead(self.latest_raw_result)
                     cur_throughput = bs / sp_size / pred_full_time
                     if len(self.dp_results) > 0:
-                        prev_row = self.dp_results[-2]
+                        # prev_row = self.dp_results[-2]
+                        if len(self.dp_results) >= 2:
+                            prev_row = self.dp_results[-2]
+                        elif len(self.dp_results) == 1:
+                            prev_row = self.dp_results[0]
+                            self.logger.warning("dp_results has only one element. Using dp_results[0] instead of dp_results[-2].")
+                        else:
+                            prev_row = None
+                            self.logger.warning("dp_results is empty. Cannot access dp_results[-2].")
+                            # 根据需要，您可以选择跳过此次 Profiling 或采取其他措施
+
                         prev_time, prev_mem = self.estimate_overhead(prev_row)
                         throughput = prev_row.bs / prev_row.sp_size / prev_time
 

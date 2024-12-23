@@ -8,17 +8,17 @@ export TOKENIZERS_PARALLELISM=false
 # The first time is to profile the model and save results, and the second time is to run the benchmark.
 
 # baseline
-torchrun --standalone --nproc_per_node 8 examples/training/open_sora/train.py \
+torchrun --standalone --nproc_per_node 2 examples/training/open_sora/train.py \
     examples/training/open_sora/configs/benchmarks/baseline.yaml
 
-# DCP intra
-torchrun --standalone --nproc_per_node 8 examples/training/open_sora/train.py \
-    examples/training/open_sora/configs/benchmarks/dcp_intra.yaml
+# # DCP intra
+# torchrun --standalone --nproc_per_node 2 examples/training/open_sora/train.py \
+#     examples/training/open_sora/configs/benchmarks/dcp_intra.yaml
 
-# DCP inter
-torchrun --standalone --nproc_per_node 8 examples/training/open_sora/train.py \
-    examples/training/open_sora/configs/benchmarks/dcp_inter.yaml
+# # DCP inter
+# torchrun --standalone --nproc_per_node 2 examples/training/open_sora/train.py \
+#     examples/training/open_sora/configs/benchmarks/dcp_inter.yaml
 
-# DCP inter + ckpt
-torchrun --standalone --nproc_per_node 8 examples/training/open_sora/train.py \
-    examples/training/open_sora/configs/benchmarks/dcp_inter_ckpt.yaml
+# # DCP inter + ckpt
+# torchrun --standalone --nproc_per_node 2 examples/training/open_sora/train.py \
+#     examples/training/open_sora/configs/benchmarks/dcp_inter_ckpt.yaml

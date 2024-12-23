@@ -12,7 +12,7 @@ outputs: exp/run/train
 grad_checkpoint: True
 num_workers: 8
 dtype: "bf16"
-sp_size: 4
+sp_size: 2
 
 # data centric parallel
 alloc_memory_fraction: 0.65  # if communication(nccl) error, try to decrease this value

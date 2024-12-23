@@ -1,0 +1,115 @@
+{
+    "config": "examples/training/open_sora/configs/train.yaml",
+    "seed": 42,
+    "batch_size": null,
+    "outputs": "exp/run/train",
+    "data_path": "./assets/example_data/demo_preprocess.csv",
+    "dtype": "bf16",
+    "grad_clip": 1.0,
+    "sp_size": 4,
+    "reduce_bucket_size_in_m": 20,
+    "epochs": 100,
+    "num_workers": 8,
+    "prefetch_factor": 2,
+    "bucket_config": {
+        "480p": {
+            "1": [
+                1.0,
+                32
+            ],
+            "51": [
+                1.0,
+                4
+            ],
+            "102": [
+                1.0,
+                2
+            ],
+            "204": [
+                1.0,
+                1
+            ],
+            "408": [
+                1.0,
+                1
+            ]
+        }
+    },
+    "num_bucket_build_workers": 16,
+    "weight_decay": 0,
+    "adam_eps": 1e-08,
+    "grad_checkpoint": true,
+    "mask_ratios": {
+        "random": 0.01,
+        "intepolate": 0.002,
+        "quarter_random": 0.002,
+        "quarter_head": 0.002,
+        "quarter_tail": 0.002,
+        "quarter_head_tail": 0.002,
+        "image_random": 0.0,
+        "image_head": 0.22,
+        "image_tail": 0.005,
+        "image_head_tail": 0.005
+    },
+    "ema_decay": 0.99,
+    "log_every": 1,
+    "ckpt_every": 1000,
+    "ckpt_path": null,
+    "lr": 0.0001,
+    "wandb": true,
+    "load": null,
+    "start_from_scratch": false,
+    "warmup_steps": 10,
+    "verbose": false,
+    "save_optimizer": false,
+    "drop_last": false,
+    "dummy_dataset": false,
+    "dummy_data_size": 100,
+    "common_ar": {
+        "144p": {
+            "0.56": [
+                144,
+                256
+            ]
+        },
+        "240p": {
+            "0.56": [
+                240,
+                426
+            ]
+        },
+        "360p": {
+            "0.56": [
+                360,
+                640
+            ]
+        },
+        "480p": {
+            "0.56": [
+                480,
+                854
+            ]
+        },
+        "720p": {
+            "0.56": [
+                720,
+                1280
+            ]
+        }
+    },
+    "preprocessed_data": true,
+    "image_mixing_type": "exclusive",
+    "image_mixing_frac": 1,
+    "distribution": "zipf",
+    "zipf_offset": 5,
+    "no_global_interpolation": false,
+    "dynamic_sp": false,
+    "dynamic_recompute": false,
+    "auto_grad_accumulation": false,
+    "alloc_memory_fraction": 0.65,
+    "profile_path": "exp/profile/train",
+    "distributed_profile": false,
+    "calculate_imbalance": false,
+    "max_grad_accumulation_steps": 3,
+    "min_grad_accumulation_steps": 2
+}
