@@ -1,0 +1,483 @@
+[2024-12-24 16:14:58] [INFO] [train.py:70:main]   Experiment directory created at exp/baseline/013-OpenSora
+[2024-12-24 16:14:58] [INFO] [train.py:71:main]   Training configuration:
+ {'adam_eps': 1e-15,
+ 'alloc_memory_fraction': 0.7,
+ 'auto_grad_accumulation': False,
+ 'batch_size': None,
+ 'bucket_config': {'144p': {1: [1.0, 345],
+                            51: [1.0, 48],
+                            102: [1.0, 25],
+                            204: [1.0, 12],
+                            408: [1.0, 6]},
+                   '240p': {1: [1.0, 128],
+                            51: [1.0, 16],
+                            102: [1.0, 8],
+                            204: [1.0, 4],
+                            408: [1.0, 2]},
+                   '360p': {1: [1.0, 64],
+                            51: [1.0, 7],
+                            102: [1.0, 4],
+                            204: [1.0, 2],
+                            408: [1.0, 1]},
+                   '480p': {1: [1.0, 32],
+                            51: [1.0, 4],
+                            102: [1.0, 2],
+                            204: [1.0, 1],
+                            408: [1.0, 1]},
+                   '720p': {1: [1.0, 14],
+                            51: [1.0, 1],
+                            102: [1.0, 1],
+                            204: [1.0, 1],
+                            408: [1.0, 1]}},
+ 'calculate_imbalance': True,
+ 'ckpt_every': -1,
+ 'ckpt_path': '/root/shared-nvme/OpenSora-STDiT-v3',
+ 'common_ar': {'144p': {'0.56': [144, 256]},
+               '240p': {'0.56': [240, 426]},
+               '360p': {'0.56': [360, 640]},
+               '480p': {'0.56': [480, 854]},
+               '720p': {'0.56': [720, 1280]}},
+ 'config': 'examples/training/open_sora/configs/benchmarks/baseline.yaml',
+ 'data_path': './assets/example_data/demo_preprocess.csv',
+ 'distributed_profile': False,
+ 'distribution': 'zipf',
+ 'drop_last': True,
+ 'dtype': 'bf16',
+ 'dummy_data_size': 20,
+ 'dummy_dataset': True,
+ 'dynamic_recompute': False,
+ 'dynamic_sp': False,
+ 'ema_decay': 0.99,
+ 'epochs': 1,
+ 'grad_checkpoint': True,
+ 'grad_clip': 1.0,
+ 'image_mixing_frac': 50,
+ 'image_mixing_type': 'exclusive',
+ 'load': None,
+ 'log_every': 10000000000.0,
+ 'lr': 1e-08,
+ 'mask_ratios': {'image_head': 0.22,
+                 'image_head_tail': 0.005,
+                 'image_random': 0.0,
+                 'image_tail': 0.005,
+                 'intepolate': 0.002,
+                 'quarter_head': 0.002,
+                 'quarter_head_tail': 0.002,
+                 'quarter_random': 0.002,
+                 'quarter_tail': 0.002,
+                 'random': 0.01},
+ 'max_grad_accumulation_steps': 3,
+ 'min_grad_accumulation_steps': 2,
+ 'no_global_interpolation': False,
+ 'num_bucket_build_workers': 16,
+ 'num_workers': 2,
+ 'outputs': 'exp/baseline',
+ 'prefetch_factor': 2,
+ 'preprocessed_data': True,
+ 'profile_path': 'exp/profile/baseline',
+ 'reduce_bucket_size_in_m': 20,
+ 'save_optimizer': False,
+ 'seed': 42,
+ 'sp_size': 2,
+ 'start_from_scratch': False,
+ 'verbose': True,
+ 'wandb': False,
+ 'warmup_steps': 10,
+ 'weight_decay': 0,
+ 'zipf_offset': 5}
+[2024-12-24 16:14:58] [INFO] [parallel_mgr.py:39:__init__]   Init parallel manager with dp_size: 1, cp_size: 1, sp_size: 2
+[2024-12-24 16:14:58] [INFO] [train.py:95:main]   Building models...
+[2024-12-24 16:15:02] [INFO] [train.py:114:main]   [Diffusion] Trainable model params: 1.12 B, Total model params: 1.12 B
+[2024-12-24 16:15:03] [INFO] [utils.py:269:__init__]   mask ratios: {'random': 0.01, 'intepolate': 0.002, 'quarter_random': 0.002, 'quarter_head': 0.002, 'quarter_tail': 0.002, 'quarter_head_tail': 0.002, 'image_random': 0.0, 'image_head': 0.22, 'image_tail': 0.005, 'image_head_tail': 0.005, 'identity': 0.75}
+[2024-12-24 16:15:03] [INFO] [train.py:156:main]   Building dataset...
+[2024-12-24 16:15:03] [INFO] [profiler.py:321:interpolate_profile_results]   >>> [Profiling] Profile results before adjustment: {'360p': {102: {'sp_size': 2,
+                'max': {'bs': 1,
+                        'execution_time': 2.6790363788604736,
+                        'memory_consumed': 16.067548274993896}},
+          51: {'sp_size': 2,
+               'max': {'bs': 2,
+                       'execution_time': 2.5883829593658447,
+                       'memory_consumed': 16.071178436279297}},
+          1: {'sp_size': 2,
+              'max': {'bs': 32,
+                      'execution_time': 2.496967315673828,
+                      'memory_consumed': 16.282785415649414}}},
+ '480p': {51: {'sp_size': 2,
+               'max': {'bs': 1,
+                       'execution_time': 2.4502651691436768,
+                       'memory_consumed': 15.85824203491211}},
+          1: {'sp_size': 2,
+              'max': {'bs': 16,
+                      'execution_time': 2.2669897079467773,
+                      'memory_consumed': 16.001445293426514}}},
+ '240p': {204: {'sp_size': 2,
+                'max': {'bs': 1,
+                        'execution_time': 2.3083910942077637,
+                        'memory_consumed': 15.88669490814209}},
+          102: {'sp_size': 2,
+                'max': {'bs': 2,
+                        'execution_time': 2.338047981262207,
+                        'memory_consumed': 15.89032506942749}},
+          51: {'sp_size': 2,
+               'max': {'bs': 4,
+                       'execution_time': 2.2771849632263184,
+                       'memory_consumed': 15.897584915161133}},
+          1: {'sp_size': 2,
+              'max': {'bs': 64,
+                      'execution_time': 2.4380645751953125,
+                      'memory_consumed': 16.206035614013672}}},
+ '144p': {408: {'sp_size': 2,
+                'max': {'bs': 2,
+                        'execution_time': 2.9897022247314453,
+                        'memory_consumed': 16.459701538085938}},
+          204: {'sp_size': 2,
+                'max': {'bs': 4,
+                        'execution_time': 3.112579345703125,
+                        'memory_consumed': 16.46696138381958}},
+          102: {'sp_size': 2,
+                'max': {'bs': 8,
+                        'execution_time': 3.085435390472412,
+                        'memory_consumed': 16.481481552124023}},
+          51: {'sp_size': 2,
+               'max': {'bs': 16,
+                       'execution_time': 3.167543649673462,
+                       'memory_consumed': 16.510521411895752}},
+          1: {'sp_size': 2,
+              'max': {'bs': 128,
+                      'execution_time': 2.155815839767456,
+                      'memory_consumed': 16.01682186126709}}},
+ '720p': {1: {'sp_size': 2,
+              'max': {'bs': 8,
+                      'execution_time': 2.562439441680908,
+                      'memory_consumed': 16.15995979309082}}}}
+[2024-12-24 16:15:03] [INFO] [profiler.py:314:_load_profile]   Profile results: {'360p': {102: {'sp_size': 2,
+                'max': {'bs': 1,
+                        'execution_time': 2.6790363788604736,
+                        'memory_consumed': 16.067548274993896}},
+          51: {'sp_size': 2,
+               'max': {'bs': 1,
+                       'execution_time': 1.2941914796829224,
+                       'memory_consumed': 16.071178436279297}},
+          1: {'sp_size': 2,
+              'max': {'bs': 32,
+                      'execution_time': 2.496967315673828,
+                      'memory_consumed': 16.282785415649414}}},
+ '480p': {51: {'sp_size': 2,
+               'max': {'bs': 1,
+                       'execution_time': 2.4502651691436768,
+                       'memory_consumed': 15.85824203491211}},
+          1: {'sp_size': 2,
+              'max': {'bs': 16,
+                      'execution_time': 2.2669897079467773,
+                      'memory_consumed': 16.001445293426514}}},
+ '240p': {204: {'sp_size': 2,
+                'max': {'bs': 1,
+                        'execution_time': 2.3083910942077637,
+                        'memory_consumed': 15.88669490814209}},
+          102: {'sp_size': 2,
+                'max': {'bs': 2,
+                        'execution_time': 2.338047981262207,
+                        'memory_consumed': 15.89032506942749}},
+          51: {'sp_size': 2,
+               'max': {'bs': 4,
+                       'execution_time': 2.2771849632263184,
+                       'memory_consumed': 15.897584915161133}},
+          1: {'sp_size': 2,
+              'max': {'bs': 64,
+                      'execution_time': 2.4380645751953125,
+                      'memory_consumed': 16.206035614013672}}},
+ '144p': {408: {'sp_size': 2,
+                'max': {'bs': 1,
+                        'execution_time': 1.4948511123657227,
+                        'memory_consumed': 16.459701538085938}},
+          204: {'sp_size': 2,
+                'max': {'bs': 3,
+                        'execution_time': 2.3344345092773438,
+                        'memory_consumed': 16.46696138381958}},
+          102: {'sp_size': 2,
+                'max': {'bs': 6,
+                        'execution_time': 2.314076542854309,
+                        'memory_consumed': 16.481481552124023}},
+          51: {'sp_size': 2,
+               'max': {'bs': 12,
+                       'execution_time': 2.3756577372550964,
+                       'memory_consumed': 16.510521411895752}},
+          1: {'sp_size': 2,
+              'max': {'bs': 128,
+                      'execution_time': 2.155815839767456,
+                      'memory_consumed': 16.01682186126709}}},
+ '720p': {1: {'sp_size': 2,
+              'max': {'bs': 7,
+                      'execution_time': 2.2421345114707947,
+                      'memory_consumed': 16.15995979309082}}}}
+[2024-12-24 16:15:03] [INFO] [datasets.py:260:__init__]   common ar for data synthesis: {'144p': (144, {'0.56': [144, 256]}),
+ '240p': (240, {'0.56': [240, 426]}),
+ '360p': (360, {'0.56': [360, 640]}),
+ '480p': (480, {'0.56': [480, 854]}),
+ '720p': (720, {'0.56': [720, 1280]})}
+[2024-12-24 16:15:03] [INFO] [datasets.py:405:_build_dummy_dataset]   build dummy dataset:
+bucket: ('144p', 1), cnt: 389
+bucket: ('240p', 1), cnt: 246
+bucket: ('360p', 1), cnt: 165
+bucket: ('480p', 1), cnt: 116
+bucket: ('720p', 1), cnt: 84
+bucket: ('144p', 51), cnt: 8
+bucket: ('240p', 51), cnt: 4
+bucket: ('144p', 102), cnt: 2
+bucket: ('360p', 51), cnt: 2
+bucket: ('240p', 102), cnt: 1
+bucket: ('480p', 51), cnt: 1
+bucket: ('144p', 204), cnt: 1
+bucket: ('360p', 102), cnt: 1
+bucket: ('720p', 51), cnt: 0
+bucket: ('240p', 204), cnt: 0
+bucket: ('480p', 102), cnt: 0
+bucket: ('144p', 408), cnt: 0
+bucket: ('360p', 204), cnt: 0
+bucket: ('720p', 102), cnt: 0
+bucket: ('240p', 408), cnt: 0
+bucket: ('480p', 204), cnt: 0
+bucket: ('360p', 408), cnt: 0
+bucket: ('720p', 204), cnt: 0
+bucket: ('480p', 408), cnt: 0
+bucket: ('720p', 408), cnt: 0
+default data_size: 20, full data size: 1020
+[2024-12-24 16:15:03] [INFO] [train.py:197:main]   Dataset contains 1020 samples.
+[2024-12-24 16:15:03] [INFO] [bucket.py:80:__init__]   Number of buckets: 425
+[2024-12-24 16:15:03] [INFO] [train.py:222:main]   Preparing for distributed training...
+[2024-12-24 16:15:06] [INFO] [train.py:248:main]   Boosting model for distributed training
+[2024-12-24 16:15:06] [INFO] [profiler.py:494:register_modules]   >>> [Profiling] Profile with grad accumulation, unit grad in bytes: 0
+[2024-12-24 16:15:06] [INFO] [train.py:281:main]   Training for 1 epochs.
+[2024-12-24 16:15:06] [INFO] [sampler.py:307:group_by_bucket]   Building buckets...
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 0, bucket_id: ('720p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 1, bucket_id: ('720p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 2, bucket_id: ('240p', 51, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 3, bucket_id: ('144p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 4, bucket_id: ('720p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 5, bucket_id: ('144p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 6, bucket_id: ('240p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 7, bucket_id: ('720p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 8, bucket_id: ('720p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 9, bucket_id: ('240p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 10, bucket_id: ('360p', 51, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 11, bucket_id: ('240p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 12, bucket_id: ('720p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 13, bucket_id: ('144p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 14, bucket_id: ('480p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 15, bucket_id: ('720p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 16, bucket_id: ('480p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 17, bucket_id: ('360p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 18, bucket_id: ('360p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 19, bucket_id: ('720p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 20, bucket_id: ('480p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 21, bucket_id: ('360p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 22, bucket_id: ('360p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 23, bucket_id: ('480p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 24, bucket_id: ('720p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 25, bucket_id: ('720p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 26, bucket_id: ('360p', 102, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 27, bucket_id: ('720p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 28, bucket_id: ('720p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 29, bucket_id: ('480p', 51, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 30, bucket_id: ('360p', 51, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 31, bucket_id: ('480p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 32, bucket_id: ('360p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 33, bucket_id: ('480p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 34, bucket_id: ('480p', 1, '0.56')
+[2024-12-24 16:15:07] [INFO] [sampler.py:213:_build_bucketized_bucket_id_access_order]   dropped: defaultdict(<class 'int'>, {})
+[2024-12-24 16:15:07] [INFO] [sampler.py:1069:get_num_batch]   Building index costs: 0.00s
+[2024-12-24 16:15:07] [INFO] [sampler.py:1070:get_num_batch]   Bucket Info at epoch 0 with bucketized schedule:
+[2024-12-24 16:15:07] [INFO] [sampler.py:1071:get_num_batch]   Bucket [#sample, #batch]:
+{('144p', 1, '0.56'): [384, 3],
+ ('240p', 1, '0.56'): [192, 3],
+ ('360p', 1, '0.56'): [160, 5],
+ ('480p', 1, '0.56'): [112, 7],
+ ('720p', 1, '0.56'): [84, 12],
+ ('144p', 51, '0.56'): [0, 0],
+ ('240p', 51, '0.56'): [4, 1],
+ ('144p', 102, '0.56'): [0, 0],
+ ('360p', 51, '0.56'): [2, 2],
+ ('240p', 102, '0.56'): [0, 0],
+ ('480p', 51, '0.56'): [1, 1],
+ ('144p', 204, '0.56'): [0, 0],
+ ('360p', 102, '0.56'): [1, 1]}
+[2024-12-24 16:15:07] [INFO] [sampler.py:1072:get_num_batch]   #training batch: 35, #training sample: 940, #non empty bucket: 13
+[2024-12-24 16:15:07] [INFO] [sampler.py:268:_bucketized_iter]   iter 0, 
+bucket_access_list: [('720p', 1, '0.56')]
+total time: [2.2421345114707947]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:07] [INFO] [sampler.py:268:_bucketized_iter]   iter 1, 
+bucket_access_list: [('720p', 1, '0.56')]
+total time: [2.2421345114707947]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:07] [INFO] [sampler.py:268:_bucketized_iter]   iter 2, 
+bucket_access_list: [('240p', 51, '0.56')]
+total time: [2.2771849632263184]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:07] [INFO] [sampler.py:268:_bucketized_iter]   iter 3, 
+bucket_access_list: [('144p', 1, '0.56')]
+total time: [2.155815839767456]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:07] [INFO] [train.py:305:main]   Beginning Epoch 0...
+[2024-12-24 16:15:07] [INFO] [sampler.py:268:_bucketized_iter]   iter 4, 
+bucket_access_list: [('720p', 1, '0.56')]
+total time: [2.2421345114707947]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:11] [INFO] [sampler.py:268:_bucketized_iter]   iter 5, 
+bucket_access_list: [('144p', 1, '0.56')]
+total time: [2.155815839767456]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:14] [INFO] [sampler.py:268:_bucketized_iter]   iter 6, 
+bucket_access_list: [('240p', 1, '0.56')]
+total time: [2.4380645751953125]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:16] [INFO] [sampler.py:268:_bucketized_iter]   iter 7, 
+bucket_access_list: [('720p', 1, '0.56')]
+total time: [2.2421345114707947]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:19] [INFO] [sampler.py:268:_bucketized_iter]   iter 8, 
+bucket_access_list: [('720p', 1, '0.56')]
+total time: [2.2421345114707947]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:21] [INFO] [sampler.py:268:_bucketized_iter]   iter 9, 
+bucket_access_list: [('240p', 1, '0.56')]
+total time: [2.4380645751953125]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:23] [INFO] [sampler.py:268:_bucketized_iter]   iter 10, 
+bucket_access_list: [('360p', 51, '0.56')]
+total time: [1.2941914796829224]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:26] [INFO] [sampler.py:268:_bucketized_iter]   iter 11, 
+bucket_access_list: [('240p', 1, '0.56')]
+total time: [2.4380645751953125]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:28] [INFO] [sampler.py:268:_bucketized_iter]   iter 12, 
+bucket_access_list: [('720p', 1, '0.56')]
+total time: [2.2421345114707947]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:31] [INFO] [sampler.py:268:_bucketized_iter]   iter 13, 
+bucket_access_list: [('144p', 1, '0.56')]
+total time: [2.155815839767456]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:33] [INFO] [sampler.py:268:_bucketized_iter]   iter 14, 
+bucket_access_list: [('480p', 1, '0.56')]
+total time: [2.2669897079467773]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:35] [INFO] [sampler.py:268:_bucketized_iter]   iter 15, 
+bucket_access_list: [('720p', 1, '0.56')]
+total time: [2.2421345114707947]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:37] [INFO] [sampler.py:268:_bucketized_iter]   iter 16, 
+bucket_access_list: [('480p', 1, '0.56')]
+total time: [2.2669897079467773]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:40] [INFO] [sampler.py:268:_bucketized_iter]   iter 17, 
+bucket_access_list: [('360p', 1, '0.56')]
+total time: [2.496967315673828]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:42] [INFO] [sampler.py:268:_bucketized_iter]   iter 18, 
+bucket_access_list: [('360p', 1, '0.56')]
+total time: [2.496967315673828]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:44] [INFO] [sampler.py:268:_bucketized_iter]   iter 19, 
+bucket_access_list: [('720p', 1, '0.56')]
+total time: [2.2421345114707947]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:46] [INFO] [sampler.py:268:_bucketized_iter]   iter 20, 
+bucket_access_list: [('480p', 1, '0.56')]
+total time: [2.2669897079467773]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:48] [INFO] [sampler.py:268:_bucketized_iter]   iter 21, 
+bucket_access_list: [('360p', 1, '0.56')]
+total time: [2.496967315673828]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:50] [INFO] [sampler.py:268:_bucketized_iter]   iter 22, 
+bucket_access_list: [('360p', 1, '0.56')]
+total time: [2.496967315673828]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:53] [INFO] [sampler.py:268:_bucketized_iter]   iter 23, 
+bucket_access_list: [('480p', 1, '0.56')]
+total time: [2.2669897079467773]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:55] [INFO] [sampler.py:268:_bucketized_iter]   iter 24, 
+bucket_access_list: [('720p', 1, '0.56')]
+total time: [2.2421345114707947]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:57] [INFO] [sampler.py:268:_bucketized_iter]   iter 25, 
+bucket_access_list: [('720p', 1, '0.56')]
+total time: [2.2421345114707947]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:15:59] [INFO] [sampler.py:268:_bucketized_iter]   iter 26, 
+bucket_access_list: [('360p', 102, '0.56')]
+total time: [2.6790363788604736]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:16:02] [INFO] [sampler.py:268:_bucketized_iter]   iter 27, 
+bucket_access_list: [('720p', 1, '0.56')]
+total time: [2.2421345114707947]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:16:04] [INFO] [sampler.py:268:_bucketized_iter]   iter 28, 
+bucket_access_list: [('720p', 1, '0.56')]
+total time: [2.2421345114707947]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:16:06] [INFO] [sampler.py:268:_bucketized_iter]   iter 29, 
+bucket_access_list: [('480p', 51, '0.56')]
+total time: [2.4502651691436768]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:16:08] [INFO] [sampler.py:268:_bucketized_iter]   iter 30, 
+bucket_access_list: [('360p', 51, '0.56')]
+total time: [1.2941914796829224]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:16:11] [INFO] [sampler.py:268:_bucketized_iter]   iter 31, 
+bucket_access_list: [('480p', 1, '0.56')]
+total time: [2.2669897079467773]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:16:13] [INFO] [sampler.py:268:_bucketized_iter]   iter 32, 
+bucket_access_list: [('360p', 1, '0.56')]
+total time: [2.496967315673828]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:16:16] [INFO] [sampler.py:268:_bucketized_iter]   iter 33, 
+bucket_access_list: [('480p', 1, '0.56')]
+total time: [2.2669897079467773]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:16:18] [INFO] [sampler.py:268:_bucketized_iter]   iter 34, 
+bucket_access_list: [('480p', 1, '0.56')]
+total time: [2.2669897079467773]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-24 16:16:19] [INFO] [sampler.py:1083:reset]   Total imbalance for this epoch: 0.00/79.04 (0.00%)
+[2024-12-24 16:16:29] [INFO] [train.py:429:main]   Epoch 0: steps: 35 elapsed time: 81.81 s, effective samples: 940, sample throughput: 11.49 samples/s, token throughput: 41941.09 token/s
+[2024-12-24 16:16:29] [INFO] [train.py:446:main]   Training is done. Exiting...

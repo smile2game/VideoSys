@@ -46,16 +46,17 @@ def main(args):
 
     # == init distributed training ==
     rank, world_size, node_rank, node_size = set_distributed_state(args.distributed_profile)
-    dist.init_process_group(
+    print(f"")
+    dist.init_process_group( #torchrun会自动获取
         rank=rank,
         world_size=world_size,
         backend="nccl",
         timeout=timedelta(minutes=10),
     )
-    deepspeed.init_distributed(timeout=timedelta(seconds=10))
+    deepspeed.init_distributed(timeout=timedelta(seconds=10)) #deepspeed no need to pass *args,it get in its inplementation
     torch.cuda.set_device(dist.get_rank() % torch.cuda.device_count())
     set_seed(args.seed)
-    device = torch.cuda.current_device()
+    device: int = torch.cuda.current_device()
 
     # == init exp_dir ==
     exp_name, exp_dir = define_experiment_workspace(args.outputs)
@@ -70,15 +71,17 @@ def main(args):
     logging.info(f"Experiment directory created at {exp_dir}")
     logging.info(f"Training configuration:\n {pformat(vars(args))}")
     if dist.get_rank() == 0:
+        print(f"args.wandb is {args.wandb}")
         if args.wandb:
             wandb.init(project="Open-Sora", name=exp_name, config=vars(args), dir="./outputs/wandb")
 
     # == init parallel manager ==
     torch.set_num_threads(1)
+    print(f"args.dynamic_sp is {args.dynamic_sp}")
     if args.dynamic_sp:
         parallel_mgr = DynamicParallelManager()
     else:
-        parallel_mgr = ParallelManager(dist.get_world_size() // args.sp_size, 1, args.sp_size)
+        parallel_mgr = ParallelManager(dist.get_world_size() // args.sp_size, 1, args.sp_size) #用不了DSP
     preprocessed_data = args.preprocessed_data
     if args.profile_path is None or not os.path.exists(args.profile_path):
         do_profile = True

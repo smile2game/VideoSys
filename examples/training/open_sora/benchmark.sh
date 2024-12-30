@@ -10,6 +10,7 @@ export TOKENIZERS_PARALLELISM=false
 # baseline
 torchrun --standalone --nproc_per_node 2 examples/training/open_sora/train.py \
     examples/training/open_sora/configs/benchmarks/baseline.yaml
+#单卡溢出显存, 起步需要双卡
 
 # # DCP intra
 # torchrun --standalone --nproc_per_node 2 examples/training/open_sora/train.py \
