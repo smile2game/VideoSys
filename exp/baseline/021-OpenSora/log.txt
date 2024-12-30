@@ -1,0 +1,272 @@
+[2024-12-30 16:55:20] [INFO] [train.py:71:main]   Experiment directory created at exp/baseline/021-OpenSora
+[2024-12-30 16:55:20] [INFO] [train.py:72:main]   Training configuration:
+ {'adam_eps': 1e-15,
+ 'alloc_memory_fraction': 0.7,
+ 'auto_grad_accumulation': False,
+ 'batch_size': None,
+ 'bucket_config': {'144p': {1: [1.0, 345],
+                            51: [1.0, 48],
+                            102: [1.0, 25],
+                            204: [1.0, 12],
+                            408: [1.0, 6]},
+                   '240p': {1: [1.0, 128],
+                            51: [1.0, 16],
+                            102: [1.0, 8],
+                            204: [1.0, 4],
+                            408: [1.0, 2]},
+                   '360p': {1: [1.0, 64],
+                            51: [1.0, 7],
+                            102: [1.0, 4],
+                            204: [1.0, 2],
+                            408: [1.0, 1]},
+                   '480p': {1: [1.0, 32],
+                            51: [1.0, 4],
+                            102: [1.0, 2],
+                            204: [1.0, 1],
+                            408: [1.0, 1]},
+                   '720p': {1: [1.0, 14],
+                            51: [1.0, 1],
+                            102: [1.0, 1],
+                            204: [1.0, 1],
+                            408: [1.0, 1]}},
+ 'calculate_imbalance': True,
+ 'ckpt_every': -1,
+ 'ckpt_path': '/root/shared-nvme/OpenSora-STDiT-v3',
+ 'common_ar': {'144p': {'0.56': [144, 256]},
+               '240p': {'0.56': [240, 426]},
+               '360p': {'0.56': [360, 640]},
+               '480p': {'0.56': [480, 854]},
+               '720p': {'0.56': [720, 1280]}},
+ 'config': 'examples/training/open_sora/configs/benchmarks/baseline.yaml',
+ 'data_path': './assets/example_data/demo_preprocess.csv',
+ 'distributed_profile': False,
+ 'distribution': 'zipf',
+ 'drop_last': True,
+ 'dtype': 'bf16',
+ 'dummy_data_size': 5,
+ 'dummy_dataset': True,
+ 'dynamic_recompute': False,
+ 'dynamic_sp': False,
+ 'ema_decay': 0.99,
+ 'epochs': 1,
+ 'grad_checkpoint': True,
+ 'grad_clip': 1.0,
+ 'image_mixing_frac': 25,
+ 'image_mixing_type': 'exclusive',
+ 'load': None,
+ 'log_every': 10000000000.0,
+ 'lr': 1e-08,
+ 'mask_ratios': {'image_head': 0.22,
+                 'image_head_tail': 0.005,
+                 'image_random': 0.0,
+                 'image_tail': 0.005,
+                 'intepolate': 0.002,
+                 'quarter_head': 0.002,
+                 'quarter_head_tail': 0.002,
+                 'quarter_random': 0.002,
+                 'quarter_tail': 0.002,
+                 'random': 0.01},
+ 'max_grad_accumulation_steps': 3,
+ 'min_grad_accumulation_steps': 2,
+ 'no_global_interpolation': False,
+ 'num_bucket_build_workers': 8,
+ 'num_workers': 2,
+ 'outputs': 'exp/baseline',
+ 'prefetch_factor': 2,
+ 'preprocessed_data': True,
+ 'profile_path': 'exp/profile/baseline',
+ 'reduce_bucket_size_in_m': 20,
+ 'save_optimizer': False,
+ 'seed': 42,
+ 'sp_size': 1,
+ 'start_from_scratch': False,
+ 'verbose': True,
+ 'wandb': False,
+ 'warmup_steps': 10,
+ 'weight_decay': 0,
+ 'zipf_offset': 5}
+[2024-12-30 16:55:20] [INFO] [parallel_mgr.py:39:__init__]   Init parallel manager with dp_size: 1, cp_size: 1, sp_size: 1
+[2024-12-30 16:55:20] [INFO] [train.py:98:main]   Building models...
+[2024-12-30 16:55:23] [INFO] [train.py:119:main]   [Diffusion] Trainable model params: 1.12 B, Total model params: 1.12 B
+[2024-12-30 16:55:23] [INFO] [utils.py:269:__init__]   mask ratios: {'random': 0.01, 'intepolate': 0.002, 'quarter_random': 0.002, 'quarter_head': 0.002, 'quarter_tail': 0.002, 'quarter_head_tail': 0.002, 'image_random': 0.0, 'image_head': 0.22, 'image_tail': 0.005, 'image_head_tail': 0.005, 'identity': 0.75}
+[2024-12-30 16:55:23] [INFO] [train.py:161:main]   Building dataset...
+[2024-12-30 16:55:23] [INFO] [profiler.py:321:interpolate_profile_results]   >>> [Profiling] Profile results before adjustment: {'360p': {102: {'sp_size': 2,
+                'max': {'bs': 1,
+                        'execution_time': 2.6790363788604736,
+                        'memory_consumed': 16.067548274993896}},
+          51: {'sp_size': 2,
+               'max': {'bs': 2,
+                       'execution_time': 2.5883829593658447,
+                       'memory_consumed': 16.071178436279297}},
+          1: {'sp_size': 2,
+              'max': {'bs': 32,
+                      'execution_time': 2.496967315673828,
+                      'memory_consumed': 16.282785415649414}}},
+ '480p': {51: {'sp_size': 2,
+               'max': {'bs': 1,
+                       'execution_time': 2.4502651691436768,
+                       'memory_consumed': 15.85824203491211}},
+          1: {'sp_size': 2,
+              'max': {'bs': 16,
+                      'execution_time': 2.2669897079467773,
+                      'memory_consumed': 16.001445293426514}}},
+ '240p': {204: {'sp_size': 2,
+                'max': {'bs': 1,
+                        'execution_time': 2.3083910942077637,
+                        'memory_consumed': 15.88669490814209}},
+          102: {'sp_size': 2,
+                'max': {'bs': 2,
+                        'execution_time': 2.338047981262207,
+                        'memory_consumed': 15.89032506942749}},
+          51: {'sp_size': 2,
+               'max': {'bs': 4,
+                       'execution_time': 2.2771849632263184,
+                       'memory_consumed': 15.897584915161133}},
+          1: {'sp_size': 2,
+              'max': {'bs': 64,
+                      'execution_time': 2.4380645751953125,
+                      'memory_consumed': 16.206035614013672}}},
+ '144p': {408: {'sp_size': 2,
+                'max': {'bs': 2,
+                        'execution_time': 2.9897022247314453,
+                        'memory_consumed': 16.459701538085938}},
+          204: {'sp_size': 2,
+                'max': {'bs': 4,
+                        'execution_time': 3.112579345703125,
+                        'memory_consumed': 16.46696138381958}},
+          102: {'sp_size': 2,
+                'max': {'bs': 8,
+                        'execution_time': 3.085435390472412,
+                        'memory_consumed': 16.481481552124023}},
+          51: {'sp_size': 2,
+               'max': {'bs': 16,
+                       'execution_time': 3.167543649673462,
+                       'memory_consumed': 16.510521411895752}},
+          1: {'sp_size': 2,
+              'max': {'bs': 128,
+                      'execution_time': 2.155815839767456,
+                      'memory_consumed': 16.01682186126709}}},
+ '720p': {1: {'sp_size': 2,
+              'max': {'bs': 8,
+                      'execution_time': 2.562439441680908,
+                      'memory_consumed': 16.15995979309082}}}}
+[2024-12-30 16:55:23] [INFO] [profiler.py:314:_load_profile]   Profile results: {'360p': {102: {'sp_size': 2,
+                'max': {'bs': 1,
+                        'execution_time': 2.6790363788604736,
+                        'memory_consumed': 16.067548274993896}},
+          51: {'sp_size': 2,
+               'max': {'bs': 1,
+                       'execution_time': 1.2941914796829224,
+                       'memory_consumed': 16.071178436279297}},
+          1: {'sp_size': 2,
+              'max': {'bs': 32,
+                      'execution_time': 2.496967315673828,
+                      'memory_consumed': 16.282785415649414}}},
+ '480p': {51: {'sp_size': 2,
+               'max': {'bs': 1,
+                       'execution_time': 2.4502651691436768,
+                       'memory_consumed': 15.85824203491211}},
+          1: {'sp_size': 2,
+              'max': {'bs': 16,
+                      'execution_time': 2.2669897079467773,
+                      'memory_consumed': 16.001445293426514}}},
+ '240p': {204: {'sp_size': 2,
+                'max': {'bs': 1,
+                        'execution_time': 2.3083910942077637,
+                        'memory_consumed': 15.88669490814209}},
+          102: {'sp_size': 2,
+                'max': {'bs': 2,
+                        'execution_time': 2.338047981262207,
+                        'memory_consumed': 15.89032506942749}},
+          51: {'sp_size': 2,
+               'max': {'bs': 4,
+                       'execution_time': 2.2771849632263184,
+                       'memory_consumed': 15.897584915161133}},
+          1: {'sp_size': 2,
+              'max': {'bs': 64,
+                      'execution_time': 2.4380645751953125,
+                      'memory_consumed': 16.206035614013672}}},
+ '144p': {408: {'sp_size': 2,
+                'max': {'bs': 1,
+                        'execution_time': 1.4948511123657227,
+                        'memory_consumed': 16.459701538085938}},
+          204: {'sp_size': 2,
+                'max': {'bs': 3,
+                        'execution_time': 2.3344345092773438,
+                        'memory_consumed': 16.46696138381958}},
+          102: {'sp_size': 2,
+                'max': {'bs': 6,
+                        'execution_time': 2.314076542854309,
+                        'memory_consumed': 16.481481552124023}},
+          51: {'sp_size': 2,
+               'max': {'bs': 12,
+                       'execution_time': 2.3756577372550964,
+                       'memory_consumed': 16.510521411895752}},
+          1: {'sp_size': 2,
+              'max': {'bs': 128,
+                      'execution_time': 2.155815839767456,
+                      'memory_consumed': 16.01682186126709}}},
+ '720p': {1: {'sp_size': 2,
+              'max': {'bs': 7,
+                      'execution_time': 2.2421345114707947,
+                      'memory_consumed': 16.15995979309082}}}}
+[2024-12-30 16:55:23] [INFO] [datasets.py:260:__init__]   common ar for data synthesis: {'144p': (144, {'0.56': [144, 256]}),
+ '240p': (240, {'0.56': [240, 426]}),
+ '360p': (360, {'0.56': [360, 640]}),
+ '480p': (480, {'0.56': [480, 854]}),
+ '720p': (720, {'0.56': [720, 1280]})}
+[2024-12-30 16:55:23] [INFO] [datasets.py:405:_build_dummy_dataset]   build dummy dataset:
+bucket: ('144p', 1), cnt: 48
+bucket: ('240p', 1), cnt: 31
+bucket: ('360p', 1), cnt: 21
+bucket: ('480p', 1), cnt: 14
+bucket: ('720p', 1), cnt: 11
+bucket: ('144p', 51), cnt: 3
+bucket: ('240p', 51), cnt: 1
+bucket: ('144p', 102), cnt: 1
+bucket: ('360p', 51), cnt: 0
+bucket: ('240p', 102), cnt: 0
+bucket: ('480p', 51), cnt: 0
+bucket: ('144p', 204), cnt: 0
+bucket: ('360p', 102), cnt: 0
+bucket: ('720p', 51), cnt: 0
+bucket: ('240p', 204), cnt: 0
+bucket: ('480p', 102), cnt: 0
+bucket: ('144p', 408), cnt: 0
+bucket: ('360p', 204), cnt: 0
+bucket: ('720p', 102), cnt: 0
+bucket: ('240p', 408), cnt: 0
+bucket: ('480p', 204), cnt: 0
+bucket: ('360p', 408), cnt: 0
+bucket: ('720p', 204), cnt: 0
+bucket: ('480p', 408), cnt: 0
+bucket: ('720p', 408), cnt: 0
+default data_size: 5, full data size: 130
+[2024-12-30 16:55:23] [INFO] [train.py:203:main]   Dataset contains 130 samples.
+[2024-12-30 16:55:23] [INFO] [bucket.py:80:__init__]   Number of buckets: 425
+[2024-12-30 16:55:23] [INFO] [train.py:228:main]   Preparing for distributed training...
+[2024-12-30 16:55:26] [INFO] [train.py:254:main]   Boosting model for distributed training
+[2024-12-30 16:55:26] [INFO] [profiler.py:494:register_modules]   >>> [Profiling] Profile with grad accumulation, unit grad in bytes: 0
+[2024-12-30 16:55:26] [INFO] [train.py:287:main]   Training for 1 epochs.
+[2024-12-30 16:55:26] [INFO] [sampler.py:307:group_by_bucket]   Building buckets...
+[2024-12-30 16:55:27] [INFO] [sampler.py:212:_build_bucketized_bucket_id_access_order]   iter 0, bucket_id: ('720p', 1, '0.56')
+[2024-12-30 16:55:27] [INFO] [sampler.py:213:_build_bucketized_bucket_id_access_order]   dropped: defaultdict(<class 'int'>, {})
+[2024-12-30 16:55:27] [INFO] [sampler.py:1069:get_num_batch]   Building index costs: 0.00s
+[2024-12-30 16:55:27] [INFO] [sampler.py:1070:get_num_batch]   Bucket Info at epoch 0 with bucketized schedule:
+[2024-12-30 16:55:27] [INFO] [sampler.py:1071:get_num_batch]   Bucket [#sample, #batch]:
+{('144p', 1, '0.56'): [0, 0],
+ ('240p', 1, '0.56'): [0, 0],
+ ('360p', 1, '0.56'): [0, 0],
+ ('480p', 1, '0.56'): [0, 0],
+ ('720p', 1, '0.56'): [7, 1],
+ ('144p', 51, '0.56'): [0, 0],
+ ('240p', 51, '0.56'): [0, 0],
+ ('144p', 102, '0.56'): [0, 0]}
+[2024-12-30 16:55:27] [INFO] [sampler.py:1072:get_num_batch]   #training batch: 1, #training sample: 7, #non empty bucket: 8
+[2024-12-30 16:55:27] [INFO] [sampler.py:268:_bucketized_iter]   iter 0, 
+bucket_access_list: [('720p', 1, '0.56')]
+total time: [2.2421345114707947]
+cur imbalance: 0.0000 %, 
+estimate total imbalance: 0.0000s
+[2024-12-30 16:55:27] [INFO] [sampler.py:1083:reset]   Total imbalance for this epoch: 0.00/2.24 (0.00%)
+[2024-12-30 16:55:27] [INFO] [train.py:312:main]   Beginning Epoch 0...

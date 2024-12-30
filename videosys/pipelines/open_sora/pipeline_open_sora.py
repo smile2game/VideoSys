@@ -125,11 +125,14 @@ class OpenSoraConfig:
 
     def __init__(
         self,
-        transformer: str = "hpcai-tech/OpenSora-STDiT-v3",
-        vae: str = "hpcai-tech/OpenSora-VAE-v1.2",
-        text_encoder: str = "DeepFloyd/t5-v1_1-xxl",
+        # transformer: str = "hpcai-tech/OpenSora-STDiT-v3",
+        # vae: str = "hpcai-tech/OpenSora-VAE-v1.2",
+        # text_encoder: str = "DeepFloyd/t5-v1_1-xxl",
+        transformer: str = "/root/shared-nvme/OpenSora-STDiT-v3",
+        vae: str = "/root/shared-nvme/OpenSora-VAE-v1.2",
+        text_encoder: str = "/root/shared-nvme/t5-v1_1-xxl",
         # ======== distributed ========
-        num_gpus: int = 1,
+        num_gpus: int = 2,
         # ======== scheduler ========
         num_sampling_steps: int = 30,
         cfg_scale: float = 7.0,
@@ -211,7 +214,7 @@ class OpenSoraPipeline(VideoSysPipeline):
         if text_encoder is None:
             text_encoder = T5EncoderModel.from_pretrained(config.text_encoder).to(dtype)
         if tokenizer is None:
-            tokenizer = AutoTokenizer.from_pretrained(config.text_encoder)
+            tokenizer = AutoTokenizer.from_pretrained(config.text_encoder,legacy = False)
         if vae is None:
             vae = OpenSoraVAE_V1_2(
                 from_pretrained=config.vae,

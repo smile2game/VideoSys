@@ -46,7 +46,7 @@ def main(args):
 
     # == init distributed training ==
     rank, world_size, node_rank, node_size = set_distributed_state(args.distributed_profile)
-    print(f"")
+    print(f"rank is {rank},world_size is {world_size}")
     dist.init_process_group( #torchrun会自动获取
         rank=rank,
         world_size=world_size,
@@ -79,9 +79,9 @@ def main(args):
     torch.set_num_threads(1)
     print(f"args.dynamic_sp is {args.dynamic_sp}")
     if args.dynamic_sp:
-        parallel_mgr = DynamicParallelManager()
+        parallel_mgr = DynamicParallelManager() 
     else:
-        parallel_mgr = ParallelManager(dist.get_world_size() // args.sp_size, 1, args.sp_size) #用不了DSP
+        parallel_mgr = ParallelManager(dist.get_world_size() // args.sp_size, 1, args.sp_size) #用不了DSP,走的这一条
     preprocessed_data = args.preprocessed_data
     if args.profile_path is None or not os.path.exists(args.profile_path):
         do_profile = True
@@ -98,6 +98,7 @@ def main(args):
     logging.info("Building models...")
 
     # == build text-encoder and vae ==
+    print(f"preprocessed_data is {preprocessed_data}")
     if not preprocessed_data:
         text_encoder = T5EncoderModel.from_pretrained("DeepFloyd/t5-v1_1-xxl", torch_dtype=dtype).to(device).eval()
         tokenizer = AutoTokenizer.from_pretrained("DeepFloyd/t5-v1_1-xxl")
@@ -113,14 +114,15 @@ def main(args):
 
     # == build diffusion model ==
     model = STDiT3_XL_2(from_pretrained=args.ckpt_path, enable_flash_attn=True, torch_dtype=dtype).to(device).train()
-    model_numel, model_numel_trainable = get_model_numel(model)
+    print(f"STDiT3_model is {model}")
+    model_numel, model_numel_trainable = get_model_numel(model) #统计参数总数和可训练参数的总量
     logging.info(
         f"[Diffusion] Trainable model params: {format_numel_str(model_numel_trainable)}, "
         f"Total model params: {format_numel_str(model_numel)}",
     )
 
-    # == build ema for diffusion model ==
-    ema = deepcopy(model)
+    # == build ema for diffusion model == #指数移动平均 是一种训练手段
+    ema = deepcopy(model) 
     requires_grad(ema, False)
     ema.eval()
 
@@ -179,6 +181,7 @@ def main(args):
     )
 
     # == build dataset ==
+    print(f"args.dummy_dataset is {args.dummy_dataset}")
     if args.dummy_dataset:
         dataset = DummyVariableVideoTextDataset(
             data_size=args.dummy_data_size,
@@ -291,6 +294,7 @@ def main(args):
 
     for epoch in range(start_epoch, cfg_epochs):
         local_token_counter = 0.0
+        print(f"profiler.need_profile() is {profiler.need_profile()}")
         if profiler.need_profile():
             # TODO: add timer for profile
             disable = True
@@ -327,8 +331,10 @@ def main(args):
                     batch_data = batch["data"][gas]
 
                     if preprocessed_data:
+                        print("数据已经预处理过了,无需搬运,直接使用!")
                         # move data
                         x = batch_data.pop("video").to(device, dtype)  # [B, C, T, H, W]
+                        print(f"x.shape is {x.shape}")
                         y = batch_data.pop("text").to(device, dtype)
                         mask = batch_data.pop("mask").to(device)
                         model_args = dict(y=y, mask=mask)
@@ -356,7 +362,8 @@ def main(args):
                         model_args["x_mask"] = mask
 
                     # diffusion
-                    loss_dict = scheduler.training_losses(model, x, model_args, mask=mask)
+                    loss_dict = scheduler.training_losses(model, x, model_args, mask=mask) #在这里前向传播计算loss?
+                    print(f"loss_dict is {loss_dict}")
 
                     # backward
                     profiler.set_gradient_accumulation_boundary(model, batch, gas)
